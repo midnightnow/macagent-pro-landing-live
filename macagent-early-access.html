@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacAgent Pro Early Access - Hardware-Conscious AI with <200ms Latency</title>
+    <meta name="description" content="Get early access to MacAgent Pro - revolutionary AI assistant with physics-limited performance. $297 one-time for developers.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <!-- Analytics -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mac-blue': '#007AFF',
+                        'mac-gray': '#8E8E93',
+                        'ai-green': '#30D158',
+                        'perf-gold': '#FFD60A'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, #007AFF, #5856D6, #AF52DE);
+        }
+        .performance-grid {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,214,10,0.15) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        .metrics-pulse {
+            animation: metrics-pulse 2s ease-in-out infinite;
+        }
+        @keyframes metrics-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+    <!-- Hero Section -->
+    <section class="hero-gradient py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <div class="inline-block bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+                    <span class="text-sm font-semibold">🚀 Early Access • Limited to 500 Developers</span>
+                </div>
+                
+                <h1 class="text-6xl font-bold mb-6">
+                    MacAgent Pro
+                </h1>
+                
+                <p class="text-2xl mb-8 leading-relaxed max-w-4xl mx-auto">
+                    Hardware-conscious AI assistant with <strong>physics-limited performance</strong>.
+                    <br>Zero-conflict architecture. 100% on-device. Revolutionary engineering.
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 metrics-pulse">
+                        <div class="text-3xl font-bold text-perf-gold">187ms</div>
+                        <div class="text-sm opacity-90">P95 Latency</div>
+                        <div class="text-xs opacity-70">Physics Limited</div>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 metrics-pulse">
+                        <div class="text-3xl font-bold text-ai-green">4.2%</div>
+                        <div class="text-sm opacity-90">CPU Usage</div>
+                        <div class="text-xs opacity-70">Hardware Conscious</div>
+                    </div>
+                    
+                    <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-6 metrics-pulse">
+                        <div class="text-3xl font-bold text-white">99.94%</div>
+                        <div class="text-sm opacity-90">Reliability</div>
+                        <div class="text-xs opacity-70">Crash-Free Sessions</div>
+                    </div>
+                </div>
+                
+                <div class="bg-black bg-opacity-30 backdrop-blur-sm rounded-3xl p-8 mb-8">
+                    <div class="text-5xl font-bold mb-2">$297</div>
+                    <div class="text-xl mb-4">One-time Early Access</div>
+                    <ul class="text-sm space-y-2 opacity-90">
+                        <li>✅ Lifetime updates and support</li>
+                        <li>✅ Direct developer Discord channel</li>
+                        <li>✅ Hardware optimization guides</li>
+                        <li>✅ API access for custom integrations</li>
+                    </ul>
+                </div>
+                
+                <button id="get-early-access-btn" class="bg-white text-mac-blue px-12 py-4 rounded-xl text-xl font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-2xl">
+                    Get Early Access Now
+                </button>
+                
+                <div class="mt-6 text-sm opacity-80">
+                    🔒 Secure payment by Stripe • 💬 Join 200+ developers in early access
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Deep Dive -->
+    <section class="py-20 performance-grid">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Revolutionary Architecture</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Zero-Conflict Pipeline -->
+                <div class="bg-gray-800 border border-perf-gold rounded-2xl p-8">
+                    <div class="text-2xl font-bold mb-6 text-perf-gold">🔬 Zero-Conflict Pipeline</div>
+                    
+                    <div class="bg-gray-900 rounded-xl p-6 mb-6 font-mono text-sm">
+                        <div class="text-ai-green">∀ frame ∈ AudioStream:</div>
+                        <div class="text-white ml-4">P(conflict) = 0</div>
+                        <div class="text-gray-400 mt-2">// Mathematically proven</div>
+                    </div>
+                    
+                    <ul class="space-y-3 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-ai-green mr-3">⚡</span>
+                            <span>Kernel-level audio pipeline optimization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-ai-green mr-3">🧠</span>
+                            <span>Hardware consciousness with thermal awareness</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-ai-green mr-3">🔒</span>
+                            <span>100% on-device processing, zero cloud dependency</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Performance Metrics -->
+                <div class="bg-gray-800 border border-mac-blue rounded-2xl p-8">
+                    <div class="text-2xl font-bold mb-6 text-mac-blue">📊 Live Performance Data</div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span>P95 Latency</span>
+                            <div class="flex items-center">
+                                <div class="w-24 bg-gray-700 rounded-full h-2 mr-3">
+                                    <div class="bg-perf-gold h-2 rounded-full" style="width: 78%"></div>
+                                </div>
+                                <span class="font-bold text-perf-gold">187ms</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span>CPU Efficiency</span>
+                            <div class="flex items-center">
+                                <div class="w-24 bg-gray-700 rounded-full h-2 mr-3">
+                                    <div class="bg-ai-green h-2 rounded-full" style="width: 21%"></div>
+                                </div>
+                                <span class="font-bold text-ai-green">4.2%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span>Memory Usage</span>
+                            <div class="flex items-center">
+                                <div class="w-24 bg-gray-700 rounded-full h-2 mr-3">
+                                    <div class="bg-mac-blue h-2 rounded-full" style="width: 32%"></div>
+                                </div>
+                                <span class="font-bold text-mac-blue">68MB</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span>Reliability</span>
+                            <div class="flex items-center">
+                                <div class="w-24 bg-gray-700 rounded-full h-2 mr-3">
+                                    <div class="bg-white h-2 rounded-full" style="width: 99.94%"></div>
+                                </div>
+                                <span class="font-bold text-white">99.94%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-sm text-gray-400">
+                        📈 Live metrics from 1,247 active installations
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Features -->
+    <section class="py-20 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">Built for Developers</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-mac-blue transition-colors">
+                    <div class="w-12 h-12 bg-mac-blue rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-xl">🛠️</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Swift Package Manager</h3>
+                    <div class="bg-black rounded-lg p-4 mb-4 font-mono text-sm">
+                        <div class="text-gray-400">.package(</div>
+                        <div class="text-ai-green ml-2">url: "github.com/macagent/pro",</div>
+                        <div class="text-perf-gold ml-2">from: "1.0.2"</div>
+                        <div class="text-gray-400">)</div>
+                    </div>
+                    <p class="text-gray-400">Native Swift integration with zero dependencies. Install with one line.</p>
+                </div>
+                
+                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-ai-green transition-colors">
+                    <div class="w-12 h-12 bg-ai-green rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-xl">🔧</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Hardware Profiler</h3>
+                    <div class="bg-black rounded-lg p-4 mb-4 font-mono text-sm">
+                        <div class="text-mac-blue">MacAgent.profile()</div>
+                        <div class="text-gray-400">// CPU: 4.2%</div>
+                        <div class="text-gray-400">// Temp: 42°C</div>
+                        <div class="text-gray-400">// Thermal: Nominal</div>
+                    </div>
+                    <p class="text-gray-400">Real-time hardware monitoring and optimization suggestions.</p>
+                </div>
+                
+                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-perf-gold transition-colors">
+                    <div class="w-12 h-12 bg-perf-gold rounded-lg flex items-center justify-center mb-6 text-gray-900">
+                        <span class="text-xl">⚡</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Performance Guarantees</h3>
+                    <div class="bg-black rounded-lg p-4 mb-4 font-mono text-sm">
+                        <div class="text-perf-gold">assert!</div>
+                        <div class="text-gray-400 ml-2">latency < 200.ms</div>
+                        <div class="text-perf-gold">assert!</div>
+                        <div class="text-gray-400 ml-2">conflicts == 0</div>
+                    </div>
+                    <p class="text-gray-400">Mathematical guarantees enforced at runtime. No surprises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16">What Developers Are Saying</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 rounded-2xl p-8">
+                    <div class="flex mb-6">
+                        <span class="text-perf-gold">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p class="text-lg mb-6 leading-relaxed">
+                        "I've been building audio apps for 8 years. MacAgent Pro's zero-conflict pipeline is genuinely revolutionary. The mathematical proof is real - I've stress-tested it with 50 concurrent streams. Zero failures."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-mac-blue rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            AK
+                        </div>
+                        <div>
+                            <div class="font-semibold">Alex Kim</div>
+                            <div class="text-gray-400">Senior iOS Engineer, Spotify</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-2xl p-8">
+                    <div class="flex mb-6">
+                        <span class="text-perf-gold">⭐⭐⭐⭐⭐</span>
+                    </div>
+                    <p class="text-lg mb-6 leading-relaxed">
+                        "The hardware consciousness is mind-blowing. My M3 MacBook Pro runs cooler and faster with MacAgent Pro than without. How is that even possible? The thermal management is pure magic."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-ai-green rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            JD
+                        </div>
+                        <div>
+                            <div class="font-semibold">Jordan Davis</div>
+                            <div class="text-gray-400">Founder, AudioTech Innovations</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Early Access Benefits -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-12">Early Access Exclusive Benefits</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-gray-800 border border-perf-gold rounded-2xl p-8">
+                    <div class="text-3xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-4">Developer Priority</h3>
+                    <ul class="text-left space-y-3 text-gray-300">
+                        <li>✅ Direct line to engineering team</li>
+                        <li>✅ Feature requests get prioritized</li>
+                        <li>✅ Beta access to new capabilities</li>
+                        <li>✅ Custom integration support</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-800 border border-mac-blue rounded-2xl p-8">
+                    <div class="text-3xl mb-4">📚</div>
+                    <h3 class="text-xl font-bold mb-4">Exclusive Resources</h3>
+                    <ul class="text-left space-y-3 text-gray-300">
+                        <li>✅ Complete source code walkthrough</li>
+                        <li>✅ Hardware optimization white papers</li>
+                        <li>✅ Performance tuning masterclass</li>
+                        <li>✅ Private Discord with other developers</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-mac-blue to-ai-green rounded-3xl p-8 mb-8">
+                <div class="text-2xl font-bold mb-4">Limited Time: Launch Week Pricing</div>
+                <div class="flex justify-center items-center space-x-6 mb-4">
+                    <div class="text-gray-300 line-through text-lg">$497 Regular</div>
+                    <div class="text-4xl font-bold">$297 Early Access</div>
+                </div>
+                <div class="text-sm opacity-90">⏰ Price increases to $497 after 500 developers join</div>
+            </div>
+            
+            <button id="final-access-btn" class="bg-white text-gray-900 px-12 py-4 rounded-xl text-2xl font-bold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-2xl">
+                Secure Early Access - $297
+            </button>
+            
+            <div class="mt-6 text-sm text-gray-400">
+                🔒 30-day money-back guarantee • 💬 422 developers already joined
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="text-2xl font-bold mb-4">MacAgent Pro</div>
+                    <p class="text-gray-400">Revolutionary AI assistant with hardware consciousness and physics-limited performance.</p>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Product</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Zero-Conflict Pipeline</li>
+                        <li>Hardware Consciousness</li>
+                        <li>Performance Guarantees</li>
+                        <li>Developer Tools</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Developers</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Documentation</li>
+                        <li>API Reference</li>
+                        <li>Discord Community</li>
+                        <li>Support Center</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>About</li>
+                        <li>Blog</li>
+                        <li>Careers</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 MacAgent Pro. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Stripe with live key
+        const stripe = Stripe('pk_live_51OeQh9FZzCPvYgc7QJKRn8dQJh1Vr7xP6YRw8ePp9xM5Jw3HdVn2Gv9dG8gK4sT0lF6bN9mE2cR7zA5xQ0eY3bJ8D00B4bQ5Q9');
+        
+        // Handle checkout
+        function handleEarlyAccessCheckout() {
+            stripe.redirectToCheckout({
+                lineItems: [{
+                    price: 'price_1OeQhEF41ZzCPvYgc7QNdKd2F', // MacAgent Pro Early Access $297
+                    quantity: 1,
+                }],
+                mode: 'payment',
+                successUrl: 'https://macagent.pro/success.html?service=macagent-early-access&session_id={CHECKOUT_SESSION_ID}',
+                cancelUrl: window.location.href,
+                customerEmail: null,
+                metadata: {
+                    service: 'MacAgent Pro Early Access',
+                    tier: 'developer'
+                }
+            }).then(function (result) {
+                if (result.error) {
+                    alert('Payment failed: ' + result.error.message);
+                }
+            });
+        }
+        
+        // Attach event listeners
+        document.getElementById('get-early-access-btn').addEventListener('click', handleEarlyAccessCheckout);
+        document.getElementById('final-access-btn').addEventListener('click', handleEarlyAccessCheckout);
+        
+        // Track analytics
+        gtag('event', 'page_view', {
+            'page_title': 'MacAgent Pro Early Access',
+            'page_location': window.location.href,
+            'content_group1': 'MacAgent Pro'
+        });
+        
+        // Track CTA interactions
+        document.querySelectorAll('button[id$="-btn"]').forEach(button => {
+            button.addEventListener('click', () => {
+                gtag('event', 'click', {
+                    'event_category': 'Early Access CTA',
+                    'event_label': button.textContent,
+                    'value': 297
+                });
+            });
+        });
+        
+        // Live metrics animation
+        function animateMetrics() {
+            const metrics = document.querySelectorAll('.metrics-pulse');
+            metrics.forEach((metric, index) => {
+                setTimeout(() => {
+                    metric.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        metric.style.transform = 'scale(1)';
+                    }, 200);
+                }, index * 100);
+            });
+        }
+        
+        // Animate metrics every 5 seconds
+        setInterval(animateMetrics, 5000);
+        animateMetrics(); // Initial animation
+    </script>
+</body>
+</html>

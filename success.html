@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Welcome to the Revolution</title>
+    <meta name="description" content="Payment confirmed! Your revolutionary AI system is being prepared.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'success-green': '#10B981',
+                        'mac-blue': '#007AFF',
+                        'vet-green': '#059669'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .success-pulse {
+            animation: success-pulse 2s ease-in-out infinite;
+        }
+        @keyframes success-pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+        .confetti {
+            position: fixed;
+            top: -10px;
+            background-color: #f0f;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall 3s linear infinite;
+        }
+        @keyframes confetti-fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-success-green to-emerald-600 min-h-screen flex items-center justify-center">
+    <!-- Confetti Container -->
+    <div id="confetti-container"></div>
+    
+    <div class="max-w-2xl mx-auto px-4 text-center text-white">
+        <!-- Success Icon -->
+        <div class="mb-8">
+            <div class="w-32 h-32 mx-auto bg-white bg-opacity-20 rounded-full flex items-center justify-center success-pulse">
+                <span class="text-6xl">🎉</span>
+            </div>
+        </div>
+        
+        <h1 class="text-5xl font-bold mb-6">
+            Payment Successful!
+        </h1>
+        
+        <div id="service-content">
+            <!-- Dynamic content based on service -->
+        </div>
+        
+        <!-- What Happens Next -->
+        <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-6">What Happens Next</h2>
+            <div id="next-steps" class="space-y-4">
+                <!-- Dynamic steps based on service -->
+            </div>
+        </div>
+        
+        <!-- Contact & Support -->
+        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6">
+            <h3 class="text-xl font-semibold mb-4">Questions or Need Support?</h3>
+            <div class="flex justify-center space-x-6">
+                <a href="mailto:support@macagent.pro" class="flex items-center text-white hover:text-gray-200 transition-colors">
+                    <span class="mr-2">✉️</span>
+                    support@macagent.pro
+                </a>
+                <div class="flex items-center">
+                    <span class="mr-2">💬</span>
+                    Live chat support
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get service from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const service = urlParams.get('service');
+        const sessionId = urlParams.get('session_id');
+        
+        // Generate confetti
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti-container');
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dda0dd'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confettiContainer.appendChild(confetti);
+                
+                // Remove after animation
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+        
+        // Service-specific content
+        function loadServiceContent() {
+            const serviceContent = document.getElementById('service-content');
+            const nextSteps = document.getElementById('next-steps');
+            
+            switch(service) {
+                case 'macagent-early-access':
+                    serviceContent.innerHTML = `
+                        <p class="text-xl mb-8 leading-relaxed">
+                            Welcome to MacAgent Pro Early Access! You're now part of an exclusive group of developers 
+                            revolutionizing AI with hardware-conscious performance.
+                        </p>
+                        <div class="bg-white bg-opacity-20 rounded-xl p-6 mb-8">
+                            <div class="text-3xl font-bold text-yellow-300">$297 Early Access</div>
+                            <div class="text-lg opacity-90">MacAgent Pro Developer License</div>
+                        </div>
+                    `;
+                    
+                    nextSteps.innerHTML = `
+                        <div class="text-left space-y-3">
+                            <div class="flex items-start">
+                                <span class="text-yellow-300 mr-3">📧</span>
+                                <span>Check your email for download links and setup instructions</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-yellow-300 mr-3">💬</span>
+                                <span>Join our exclusive developer Discord within 24 hours</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-yellow-300 mr-3">🔧</span>
+                                <span>Install via Homebrew: <code class="bg-black bg-opacity-30 px-2 py-1 rounded">brew tap macagent/pro && brew install macagent-pro</code></span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-yellow-300 mr-3">⚡</span>
+                                <span>Start building with &lt;200ms latency performance</span>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'vetsorcery-emergency':
+                    serviceContent.innerHTML = `
+                        <p class="text-xl mb-8 leading-relaxed">
+                            Your veterinary clinic now has 24/7 AI emergency phone coverage! 
+                            Never miss another critical call or lose emergency revenue.
+                        </p>
+                        <div class="bg-white bg-opacity-20 rounded-xl p-6 mb-8">
+                            <div class="text-3xl font-bold text-emerald-300">$497/month</div>
+                            <div class="text-lg opacity-90">VetSorcery Emergency Coverage</div>
+                            <div class="text-sm opacity-75 mt-2">7-day free trial started</div>
+                        </div>
+                    `;
+                    
+                    nextSteps.innerHTML = `
+                        <div class="text-left space-y-3">
+                            <div class="flex items-start">
+                                <span class="text-emerald-300 mr-3">📞</span>
+                                <span>Our team will call within 30 minutes to setup your phone system</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-emerald-300 mr-3">🤖</span>
+                                <span>AI agent trained on your clinic's protocols within 4 hours</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-emerald-300 mr-3">🚀</span>
+                                <span>Go live with 24/7 coverage by end of day</span>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-emerald-300 mr-3">📊</span>
+                                <span>Access your real-time dashboard and call analytics</span>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                default:
+                    serviceContent.innerHTML = `
+                        <p class="text-xl mb-8">
+                            Thank you for your purchase! Your revolutionary AI system is being prepared.
+                        </p>
+                    `;
+                    nextSteps.innerHTML = `
+                        <div class="text-left">
+                            <div class="flex items-start">
+                                <span class="text-white mr-3">📧</span>
+                                <span>Check your email for detailed instructions</span>
+                            </div>
+                        </div>
+                    `;
+            }
+        }
+        
+        // Initialize page
+        createConfetti();
+        loadServiceContent();
+        
+        // Track successful payment
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'purchase', {
+                transaction_id: sessionId || 'unknown',
+                value: service === 'macagent-early-access' ? 297 : 497,
+                currency: 'USD',
+                items: [{
+                    item_id: service,
+                    item_name: service === 'macagent-early-access' ? 'MacAgent Pro Early Access' : 'VetSorcery Emergency Coverage',
+                    category: service === 'macagent-early-access' ? 'Software' : 'Service',
+                    quantity: 1,
+                    price: service === 'macagent-early-access' ? 297 : 497
+                }]
+            });
+        }
+        
+        // Auto-redirect after 60 seconds
+        setTimeout(() => {
+            const redirectUrl = service === 'macagent-early-access' ? 
+                'https://macagent.pro' : 
+                'https://vetsorcery.com';
+            window.location.href = redirectUrl;
+        }, 60000);
+    </script>
+</body>
+</html>

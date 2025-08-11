@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "hardcard-firebase-studio"
+  },
+  "targets": {
+    "hardcard-firebase-studio": {
+      "hosting": {
+        "macagent-pro": [
+          "macagent-pro"
+        ]
+      }
+    }
+  }
+}

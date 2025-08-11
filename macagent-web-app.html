@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacAgent Pro - Try Free in Browser</title>
+    <style>
+        /* macOS-inspired design system */
+        :root {
+            --sf-pro: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+            --sf-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            
+            /* macOS color palette */
+            --mac-blue: #007AFF;
+            --mac-blue-dark: #0056CC;
+            --mac-green: #30D158;
+            --mac-orange: #FF9500;
+            --mac-red: #FF3B30;
+            --mac-purple: #AF52DE;
+            --mac-indigo: #5856D6;
+            
+            /* macOS grays */
+            --mac-gray-1: #1C1C1E;
+            --mac-gray-2: #2C2C2E;
+            --mac-gray-3: #3A3A3C;
+            --mac-gray-4: #48484A;
+            --mac-gray-5: #636366;
+            --mac-gray-6: #8E8E93;
+            --mac-label: #000000;
+            --mac-secondary-label: #3C3C43;
+            --mac-tertiary-label: #3C3C4399;
+            
+            /* macOS surfaces */
+            --mac-background: #FFFFFF;
+            --mac-secondary-background: #F2F2F7;
+            --mac-tertiary-background: #FFFFFF;
+            --mac-grouped-background: #F2F2F7;
+            
+            /* macOS effects */
+            --mac-blur: blur(20px);
+            --mac-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --mac-shadow-large: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--sf-pro);
+            background: var(--mac-background);
+            color: var(--mac-label);
+            line-height: 1.47059;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+        
+        /* macOS-style hero section */
+        .hero {
+            background: linear-gradient(135deg, var(--mac-background) 0%, var(--mac-secondary-background) 100%);
+            padding: 88px 0 60px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 600;
+            letter-spacing: -0.009em;
+            line-height: 1.0625;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--mac-label) 0%, var(--mac-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero .subtitle {
+            font-size: 28px;
+            font-weight: 400;
+            color: var(--mac-secondary-label);
+            margin-bottom: 32px;
+            letter-spacing: 0.007em;
+        }
+        
+        /* Web app interface */
+        .web-app {
+            background: var(--mac-tertiary-background);
+            border: 0.5px solid rgba(0, 0, 0, 0.04);
+            border-radius: 20px;
+            box-shadow: var(--mac-shadow-large);
+            margin: 32px auto 48px;
+            max-width: 800px;
+            overflow: hidden;
+        }
+        
+        .web-app-header {
+            background: var(--mac-secondary-background);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+        }
+        
+        .traffic-lights {
+            display: flex;
+            gap: 8px;
+            margin-right: 16px;
+        }
+        
+        .traffic-light {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .traffic-light.close { background: #FF5F57; }
+        .traffic-light.minimize { background: #FFBD2E; }
+        .traffic-light.maximize { background: #28CA42; }
+        
+        .app-title {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--mac-secondary-label);
+        }
+        
+        .chat-interface {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            background: var(--mac-background);
+        }
+        
+        .message {
+            margin-bottom: 16px;
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        
+        .message.user {
+            background: var(--mac-blue);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message.agent {
+            background: var(--mac-secondary-background);
+            color: var(--mac-label);
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .chat-input-area {
+            padding: 16px 24px;
+            background: var(--mac-secondary-background);
+            border-top: 0.5px solid rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .chat-input {
+            flex: 1;
+            background: var(--mac-background);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            padding: 12px 16px;
+            font-size: 16px;
+            font-family: var(--sf-pro);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        
+        .chat-input:focus {
+            border-color: var(--mac-blue);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+        
+        .send-button {
+            background: var(--mac-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .send-button:hover {
+            background: var(--mac-blue-dark);
+            transform: scale(1.05);
+        }
+        
+        .send-button:disabled {
+            background: var(--mac-gray-6);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Typing indicator */
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            color: var(--mac-secondary-label);
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+        
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--mac-gray-6);
+            animation: typing 1.4s infinite;
+        }
+        
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typing {
+            0%, 60%, 100% { opacity: 0.3; }
+            30% { opacity: 1; }
+        }
+        
+        /* Feature comparison */
+        .feature-comparison {
+            background: var(--mac-secondary-background);
+            padding: 48px 0;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .tier-card {
+            background: var(--mac-background);
+            border: 0.5px solid rgba(0, 0, 0, 0.04);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: var(--mac-shadow);
+            text-align: center;
+        }
+        
+        .tier-card.current {
+            border: 2px solid var(--mac-green);
+            transform: scale(1.02);
+        }
+        
+        .tier-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .tier-description {
+            color: var(--mac-secondary-label);
+            margin-bottom: 24px;
+            font-size: 17px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+        
+        .feature-list li.included::before {
+            content: '✓';
+            color: var(--mac-green);
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        
+        .feature-list li.limited::before {
+            content: '~';
+            color: var(--mac-orange);
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        
+        .feature-list li.excluded::before {
+            content: '×';
+            color: var(--mac-gray-6);
+            font-weight: 600;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background: var(--mac-blue);
+            color: white;
+            border: none;
+            border-radius: 980px;
+            padding: 16px 32px;
+            font-size: 17px;
+            font-weight: 400;
+            font-family: var(--sf-pro);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 14px rgba(0, 122, 255, 0.39);
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            background: var(--mac-blue-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--mac-green);
+            color: white;
+            border: none;
+            border-radius: 980px;
+            padding: 16px 32px;
+            font-size: 17px;
+            font-weight: 400;
+            font-family: var(--sf-pro);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 14px rgba(48, 209, 88, 0.39);
+            width: 100%;
+        }
+        
+        .btn-secondary:hover {
+            background: #28B946;
+            transform: translateY(-1px);
+        }
+        
+        /* Quick suggestions */
+        .suggestions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+            justify-content: center;
+        }
+        
+        .suggestion-chip {
+            background: var(--mac-secondary-background);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            padding: 8px 14px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .suggestion-chip:hover {
+            background: var(--mac-blue);
+            color: white;
+            border-color: var(--mac-blue);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 48px; }
+            .hero .subtitle { font-size: 24px; }
+            .container { padding: 0 16px; }
+            .web-app { margin: 24px 16px; }
+            .chat-interface { height: 350px; }
+            .comparison-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="container">
+            <h1>Try MacAgent Pro Free</h1>
+            <p class="subtitle">Get basic Mac advice in your browser, then upgrade for full hardware consciousness</p>
+            
+            <!-- Web App Interface -->
+            <div class="web-app">
+                <div class="web-app-header">
+                    <div class="traffic-lights">
+                        <div class="traffic-light close"></div>
+                        <div class="traffic-light minimize"></div>
+                        <div class="traffic-light maximize"></div>
+                    </div>
+                    <div class="app-title">MacAgent Pro - Web Preview</div>
+                </div>
+                
+                <div class="chat-interface">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message agent">
+                            👋 Hi! I'm MacAgent Pro. I can help with basic Mac questions right here in your browser. Try asking me something!
+                        </div>
+                    </div>
+                    
+                    <div class="typing-indicator" id="typingIndicator">
+                        <div class="typing-dots">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                        <span>MacAgent is thinking...</span>
+                    </div>
+                    
+                    <div class="suggestions">
+                        <div class="suggestion-chip" onclick="askQuestion('How do I check my Mac\'s storage?')">Check storage</div>
+                        <div class="suggestion-chip" onclick="askQuestion('What\'s using my CPU?')">CPU usage</div>
+                        <div class="suggestion-chip" onclick="askQuestion('How to speed up my Mac?')">Speed up Mac</div>
+                        <div class="suggestion-chip" onclick="askQuestion('Check memory usage')">Memory usage</div>
+                    </div>
+                    
+                    <div class="chat-input-area">
+                        <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything about your Mac..." onkeypress="handleKeyPress(event)">
+                        <button class="send-button" id="sendButton" onclick="sendMessage()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Feature Comparison -->
+    <div class="feature-comparison">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 48px; font-weight: 600; margin-bottom: 48px;">Choose Your Experience</h2>
+            
+            <div class="comparison-grid">
+                <!-- Web Free Tier -->
+                <div class="tier-card current">
+                    <h3 class="tier-title">Web Free</h3>
+                    <p class="tier-description">Basic Mac advice in your browser</p>
+                    
+                    <ul class="feature-list">
+                        <li class="included">Basic Mac questions & troubleshooting</li>
+                        <li class="included">General productivity tips</li>
+                        <li class="included">macOS feature explanations</li>
+                        <li class="limited">Limited conversations per day</li>
+                        <li class="excluded">No hardware consciousness</li>
+                        <li class="excluded">No system integration</li>
+                        <li class="excluded">No voice commands</li>
+                    </ul>
+                    
+                    <button class="btn-secondary" onclick="scrollToChatApp()">You're using this now!</button>
+                </div>
+                
+                <!-- Native App Base -->
+                <div class="tier-card">
+                    <h3 class="tier-title">Native App ($10/mo)</h3>
+                    <p class="tier-description">Download for hardware consciousness & integration</p>
+                    
+                    <ul class="feature-list">
+                        <li class="included">Everything in Web Free</li>
+                        <li class="included">🌡️ Hardware consciousness (CPU temp, battery)</li>
+                        <li class="included">🎤 Voice commands with zero conflicts</li>
+                        <li class="included">🔒 Complete privacy (on-device processing)</li>
+                        <li class="included">⚡ Sub-200ms response times</li>
+                        <li class="included">🛠️ System integration & automation</li>
+                        <li class="included">Unlimited conversations</li>
+                    </ul>
+                    
+                    <button class="btn-primary" onclick="downloadApp()">Download Free Trial</button>
+                </div>
+                
+                <!-- Advanced -->
+                <div class="tier-card">
+                    <h3 class="tier-title">Advanced ($30/mo)</h3>
+                    <p class="tier-description">Full power for teams & professionals</p>
+                    
+                    <ul class="feature-list">
+                        <li class="included">Everything in Native App</li>
+                        <li class="included">🤖 Advanced AI models</li>
+                        <li class="included">🔮 Predictive workflows</li>
+                        <li class="included">👥 Multi-agent collaboration</li>
+                        <li class="included">🔌 API access for integrations</li>
+                        <li class="included">📞 Priority support</li>
+                        <li class="included">Custom integrations</li>
+                    </ul>
+                    
+                    <button class="btn-primary" onclick="downloadApp()">Start Advanced Trial</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
+        
+        let conversationCount = 0;
+        const dailyLimit = 10; // Free tier conversation limit
+        
+        const macAdviceDatabase = {
+            'storage': 'To check storage: Apple menu → About This Mac → Storage. Or use "About This Mac" from the Apple menu to see detailed storage breakdown.',
+            'cpu': 'Check CPU usage in Activity Monitor (Applications → Utilities → Activity Monitor). Look for processes using high % CPU.',
+            'speed': 'To speed up your Mac: 1) Restart regularly 2) Clear cache files 3) Remove unused apps 4) Check Activity Monitor for resource-heavy apps 5) Free up storage space.',
+            'memory': 'Check memory in Activity Monitor → Memory tab. Look for "Memory Pressure" - green is good, yellow/red means you need more RAM or to close apps.',
+            'battery': 'Battery info: Hold Option key → click battery icon in menu bar for detailed info. Or System Preferences → Battery.',
+            'temperature': 'For hardware consciousness like CPU temperature monitoring, you\'ll need the native MacAgent Pro app with full system access.',
+            'disk': 'Check disk health: Hold Option → Apple menu → System Information → Storage. For detailed analysis, try Disk Utility.',
+            'network': 'Network diagnostics: Hold Option → click WiFi icon for detailed info. Or Network Utility in Applications → Utilities.',
+            'permissions': 'App permissions: System Preferences → Security & Privacy → Privacy tab. Manage what apps can access.',
+            'updates': 'Check updates: Apple menu → About This Mac → Software Update, or System Preferences → Software Update.'
+        };
+        
+        function addMessage(content, isUser = false) {
+            const message = document.createElement('div');
+            message.className = `message ${isUser ? 'user' : 'agent'}`;
+            message.textContent = content;
+            chatMessages.appendChild(message);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function showTyping() {
+            typingIndicator.style.display = 'flex';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function hideTyping() {
+            typingIndicator.style.display = 'none';
+        }
+        
+        function getResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            
+            // Check for hardware consciousness questions
+            if (message.includes('temperature') || message.includes('thermal') || message.includes('hardware')) {
+                return "🔬 Hardware consciousness features like real-time CPU temperature monitoring require the native MacAgent Pro app. The web version can only provide general Mac advice. Download the app for full hardware integration!";
+            }
+            
+            // Check for voice/audio questions
+            if (message.includes('voice') || message.includes('microphone') || message.includes('audio')) {
+                return "🎤 Voice commands and zero-conflict audio architecture are exclusive to the native MacAgent Pro app. Download to experience hands-free Mac control!";
+            }
+            
+            // Find relevant advice
+            for (const [keyword, advice] of Object.entries(macAdviceDatabase)) {
+                if (message.includes(keyword)) {
+                    return advice;
+                }
+            }
+            
+            // Default responses for common patterns
+            if (message.includes('how') || message.includes('what') || message.includes('check')) {
+                return "I can help with basic Mac questions! Try asking about storage, CPU usage, memory, battery, or speeding up your Mac. For advanced features like hardware monitoring, you'll need the native app.";
+            }
+            
+            return "I'm MacAgent Pro's web preview! I can answer basic Mac questions like checking storage, CPU usage, memory, and general troubleshooting. For advanced features like hardware consciousness and voice commands, download the native app!";
+        }
+        
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Check daily limit for free tier
+            if (conversationCount >= dailyLimit) {
+                addMessage("You've reached the daily limit for web conversations. Download MacAgent Pro for unlimited conversations plus hardware consciousness!", false);
+                return;
+            }
+            
+            addMessage(message, true);
+            chatInput.value = '';
+            conversationCount++;
+            
+            // Show typing indicator
+            showTyping();
+            sendButton.disabled = true;
+            
+            // Simulate AI thinking time
+            setTimeout(() => {
+                hideTyping();
+                const response = getResponse(message);
+                addMessage(response, false);
+                sendButton.disabled = false;
+                
+                // Show upgrade prompt occasionally
+                if (conversationCount >= 3 && Math.random() > 0.7) {
+                    setTimeout(() => {
+                        addMessage("💡 Enjoying MacAgent Pro? Download the native app for hardware consciousness, voice commands, and unlimited conversations!", false);
+                    }, 2000);
+                }
+            }, 1000 + Math.random() * 2000);
+        }
+        
+        function askQuestion(question) {
+            chatInput.value = question;
+            sendMessage();
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+        
+        function scrollToChatApp() {
+            document.querySelector('.web-app').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center'
+            });
+            chatInput.focus();
+        }
+        
+        function downloadApp() {
+            // Simulate app download
+            alert('MacAgent Pro Download\n\n• 14-day free trial\n• Hardware consciousness\n• Voice commands\n• Zero conflicts\n• On-device privacy\n\nInstall: brew install --cask macagent-pro');
+        }
+        
+        // Focus on chat input when page loads
+        window.addEventListener('load', () => {
+            chatInput.focus();
+        });
+    </script>
+</body>
+</html>

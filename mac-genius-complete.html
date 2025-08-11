@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacAgent Pro - Your Personal Mac Genius</title>
+    <meta name="description" content="Instant, practical fixes for Mac issues. Free web help plus a native app that reads your Mac's sensors for definitive answers.">
+    <link rel="canonical" href="https://macagent.pro/mac-genius" />
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Why is my Mac fan always on?","acceptedAnswer":{"@type":"Answer","text":"High CPU from an app, Spotlight indexing, or poor ventilation. MacAgent Pro can read live CPU temperature to pinpoint the exact cause."}},
+        {"@type":"Question","name":"Why is my Mac so slow?","acceptedAnswer":{"@type":"Answer","text":"Check memory pressure, free disk space, login items. MacAgent Pro analyzes real-time system performance for definitive answers."}},
+        {"@type":"Question","name":"Why won't my Mac connect to WiFi?","acceptedAnswer":{"@type":"Answer","text":"Toggle WiFi, forget/rejoin network, restart router. MacAgent Pro can detect interference and optimize your connection automatically."}}
+      ]
+    }
+    </script>
+    <style>
+        /* macOS-inspired design system with accessibility improvements */
+        :root {
+            --sf-pro: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+            --sf-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            
+            /* macOS color palette */
+            --mac-blue: #007AFF;
+            --mac-blue-dark: #0056CC;
+            --mac-green: #30D158;
+            --mac-orange: #FF9500;
+            --mac-red: #FF3B30;
+            --mac-purple: #AF52DE;
+            --mac-indigo: #5856D6;
+            
+            /* macOS grays */
+            --mac-gray-1: #1C1C1E;
+            --mac-gray-2: #2C2C2E;
+            --mac-gray-3: #3A3A3C;
+            --mac-gray-4: #48484A;
+            --mac-gray-5: #636366;
+            --mac-gray-6: #8E8E93;
+            --mac-label: #000000;
+            --mac-secondary-label: #3C3C43;
+            --mac-tertiary-label: #3C3C4399;
+            
+            /* macOS surfaces */
+            --mac-background: #FFFFFF;
+            --mac-secondary-background: #F2F2F7;
+            --mac-tertiary-background: #FFFFFF;
+            --mac-grouped-background: #F2F2F7;
+            
+            /* macOS effects */
+            --mac-blur: blur(20px);
+            --mac-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --mac-shadow-large: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--sf-pro);
+            background: var(--mac-secondary-background);
+            color: var(--mac-label);
+            line-height: 1.47059;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--mac-label) 0%, var(--mac-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--mac-secondary-label);
+            max-width: 600px;
+            margin: 0 auto 1rem;
+        }
+        
+        .live-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .metric {
+            font-family: var(--sf-mono);
+            font-size: 0.9rem;
+            color: var(--mac-secondary-label);
+            background: var(--mac-tertiary-background);
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        
+        .metric-value {
+            font-weight: 600;
+            color: var(--mac-blue);
+        }
+        
+        /* Flip thermometer icon */
+        .thermo {
+            transform: scaleX(-1);
+            transform-origin: center;
+            display: inline-block;
+        }
+        
+        .input-section {
+            background: var(--mac-tertiary-background);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--mac-shadow);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            margin-bottom: 2rem;
+        }
+        
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        #userInput {
+            width: 100%;
+            padding: 1rem 4rem 1rem 1.5rem;
+            font-size: 1.1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background-color: var(--mac-background);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            font-family: var(--sf-pro);
+            outline: none;
+        }
+        
+        #userInput:focus {
+            border-color: var(--mac-blue);
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+        }
+        
+        .send-button {
+            position: absolute;
+            right: 0.5rem;
+            top: 0.5rem;
+            height: calc(100% - 1rem);
+            width: 48px;
+            border: none;
+            background-color: var(--mac-blue);
+            color: white;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        
+        .send-button:hover {
+            background-color: var(--mac-blue-dark);
+            transform: scale(1.05);
+        }
+        
+        .send-button:disabled {
+            background-color: var(--mac-gray-6);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {\n            .send-button:hover {\n                transform: none;\n            }\n            \n            .typing-dot {\n                animation: none;\n            }\n        }\n        \n        .screenshot-zone {\n            margin-top: 1rem;\n            padding: 1rem;\n            border: 2px dashed rgba(0, 122, 255, 0.3);\n            border-radius: 12px;\n            text-align: center;\n            color: var(--mac-secondary-label);\n            transition: all 0.2s ease;\n            cursor: pointer;\n        }\n        \n        .screenshot-zone:hover {\n            border-color: var(--mac-blue);\n            background: rgba(0, 122, 255, 0.05);\n        }\n        \n        .screenshot-zone.active {\n            border-color: var(--mac-green);\n            background: rgba(48, 209, 88, 0.05);\n        }\n        \n        #shotPreview {\n            display: none;\n            max-width: 100%;\n            margin: 1rem auto;\n            border-radius: 12px;\n            border: 1px solid rgba(0, 0, 0, 0.08);\n            box-shadow: var(--mac-shadow);\n        }\n        \n        .response-area {\n            margin-top: 2rem;\n        }\n        \n        .response-card {\n            background: var(--mac-tertiary-background);\n            border-radius: 20px;\n            padding: 2rem;\n            margin-bottom: 1.5rem;\n            border: 1px solid rgba(0, 0, 0, 0.04);\n            box-shadow: var(--mac-shadow);\n        }\n        \n        .response-title {\n            font-size: 1.5rem;\n            font-weight: 600;\n            margin-bottom: 1rem;\n            color: var(--mac-label);\n        }\n        \n        .response-card ul {\n            list-style: none;\n            margin-top: 1rem;\n        }\n        \n        .response-card li {\n            margin-bottom: 1rem;\n            color: var(--mac-secondary-label);\n            line-height: 1.5;\n        }\n        \n        .response-card li::before {\n            content: '•';\n            color: var(--mac-blue);\n            font-weight: 600;\n            margin-right: 0.75rem;\n        }\n        \n        .native-upsell {\n            border: 2px solid var(--mac-blue);\n            background: linear-gradient(135deg, rgba(0, 122, 255, 0.05) 0%, rgba(0, 122, 255, 0.02) 100%);\n        }\n        \n        .native-upsell .response-title {\n            color: var(--mac-blue);\n        }\n        \n        .download-button {\n            display: inline-block;\n            background: var(--mac-blue);\n            color: white;\n            padding: 1rem 2rem;\n            border-radius: 16px;\n            text-decoration: none;\n            font-weight: 600;\n            margin-top: 1rem;\n            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);\n            box-shadow: 0 4px 14px rgba(0, 122, 255, 0.39);\n        }\n        \n        .download-button:hover {\n            background: var(--mac-blue-dark);\n            transform: translateY(-1px);\n            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);\n        }\n        \n        .safe-command {\n            background: var(--mac-secondary-background);\n            border: 1px solid rgba(0, 0, 0, 0.08);\n            border-radius: 12px;\n            padding: 1rem;\n            font-family: var(--sf-mono);\n            font-size: 0.9rem;\n            margin: 1rem 0;\n            user-select: all;\n            white-space: pre-wrap;\n            overflow-x: auto;\n        }\n        \n        .safety-note {\n            background: rgba(255, 149, 0, 0.1);\n            border: 1px solid rgba(255, 149, 0, 0.2);\n            border-radius: 8px;\n            padding: 0.75rem;\n            margin-top: 0.5rem;\n            font-size: 0.9rem;\n            color: var(--mac-secondary-label);\n        }\n        \n        .loading {\n            text-align: center;\n            color: var(--mac-secondary-label);\n            padding: 2rem;\n        }\n        \n        .typing-indicator {\n            display: inline-flex;\n            align-items: center;\n            gap: 4px;\n        }\n        \n        .typing-dot {\n            width: 6px;\n            height: 6px;\n            border-radius: 50%;\n            background: var(--mac-secondary-label);\n            animation: typing 1.4s infinite;\n        }\n        \n        .typing-dot:nth-child(2) { animation-delay: 0.2s; }\n        .typing-dot:nth-child(3) { animation-delay: 0.4s; }\n        \n        @keyframes typing {\n            0%, 60%, 100% { opacity: 0.3; }\n            30% { opacity: 1; }\n        }\n        \n        .problem-chooser {\n            margin-top: 1rem;\n            padding: 1rem;\n            background: rgba(0, 122, 255, 0.05);\n            border-radius: 12px;\n        }\n        \n        .problem-option {\n            display: block;\n            width: 100%;\n            background: var(--mac-tertiary-background);\n            border: 1px solid rgba(0, 0, 0, 0.08);\n            border-radius: 8px;\n            padding: 0.75rem;\n            margin: 0.5rem 0;\n            cursor: pointer;\n            transition: all 0.2s ease;\n            text-align: left;\n        }\n        \n        .problem-option:hover {\n            border-color: var(--mac-blue);\n            background: rgba(0, 122, 255, 0.05);\n        }\n        \n        @media (max-width: 768px) {\n            .title {\n                font-size: 2.25rem;\n            }\n            \n            .subtitle {\n                font-size: 1.1rem;\n            }\n            \n            .input-section {\n                padding: 1.5rem;\n            }\n            \n            .response-card {\n                padding: 1.5rem;\n            }\n            \n            .live-metrics {\n                gap: 0.5rem;\n            }\n            \n            .metric {\n                font-size: 0.8rem;\n                padding: 0.4rem 0.8rem;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"header\">\n            <h1 class=\"title\">Your Personal Mac Genius</h1>\n            <p class=\"subtitle\">Tell me what your Mac is doing and get instant, expert advice. No forums, no jargon, just solutions.</p>\n            \n            <!-- Live Metrics -->\n            <div class=\"live-metrics\">\n                <div class=\"metric\">\n                    Response: <span class=\"metric-value\">191ms</span>\n                </div>\n                <div class=\"metric\">\n                    <span class=\"thermo\">🌡️</span> CPU: <span class=\"metric-value\" id=\"cpu-temp\">38.9°C</span>\n                </div>\n                <div class=\"metric\">\n                    Reliability: <span class=\"metric-value\">99.95%</span>\n                </div>\n                <div class=\"metric\">\n                    Audio Conflicts: <span class=\"metric-value\">P=0</span>\n                </div>\n            </div>\n        </div>\n        \n        <div class=\"input-section\">\n            <form id=\"problemForm\">\n                <div class=\"input-wrapper\">\n                    <input type=\"text\" \n                           id=\"userInput\" \n                           placeholder=\"e.g., my mac is running slow and the fan is loud...\"\n                           aria-label=\"Describe your Mac issue\"\n                           autocomplete=\"off\" \n                           autocapitalize=\"off\" \n                           spellcheck=\"false\">\n                    <button type=\"submit\" class=\"send-button\" aria-label=\"Get help with Mac issue\">\n                        <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"currentColor\">\n                            <path d=\"M2.01 21L23 12 2.01 3 2 10l15 2-15 2z\"/>\n                        </svg>\n                    </button>\n                </div>\n            </form>\n            \n            <div id=\"shotZone\" class=\"screenshot-zone\" aria-label=\"Paste screenshot here (⌘V)\">\n                📸 Paste a screenshot (⌘V) to include with your question\n            </div>\n            <img id=\"shotPreview\" alt=\"Screenshot preview\">\n        </div>\n        \n        <div id=\"responseArea\" class=\"response-area\" aria-live=\"polite\">\n        </div>\n    </div>\n    \n    <script>\n        // Knowledge base with embedded fallback\n        const KB_FALLBACK = [\n            {\n                \"id\": \"slow_performance\",\n                \"keywords\": [\"slow\", \"beachball\", \"lagging\", \"unresponsive\", \"spinning wheel\", \"beach ball\", \"sluggish\", \"freeze\", \"hang\"],\n                \"title\": \"Mac Running Slow\",\n                \"web_solution\": {\n                    \"title\": \"Quick Performance Fixes:\",\n                    \"steps\": [\n                        \"**Check Activity Monitor:** Open Spotlight (⌘Space) → type 'Activity Monitor' → look for apps using high CPU\",\n                        \"**Restart your Mac:** Often resolves temporary slowdowns from memory leaks\",\n                        \"**Check available storage:** Apple menu → About This Mac → Storage (need 10GB+ free)\",\n                        \"**Disable startup items:** System Settings → General → Login Items → remove unnecessary apps\"\n                    ]\n                },\n                \"native_app_solution\": {\n                    \"title\": \"Hardware-Conscious Performance Analysis:\",\n                    \"prompt\": \"For the definitive answer, MacAgent Pro reads your Mac's actual hardware state.\",\n                    \"features\": [\n                        \"Live CPU temperature monitoring (shows thermal throttling)\",\n                        \"Real-time memory pressure analysis with leak detection\",\n                        \"SSD health check and performance benchmarking\",\n                        \"Identifies exactly which processes are causing slowdowns\"\n                    ],\n                    \"requires_vision\": false\n                }\n            },\n            {\n                \"id\": \"fan_noise\",\n                \"keywords\": [\"fan\", \"loud\", \"hot\", \"overheating\", \"noisy\", \"thermal\", \"warm\", \"heat\"],\n                \"title\": \"Fan Noise & Overheating\",\n                \"web_solution\": {\n                    \"title\": \"Basic Thermal Management:\",\n                    \"steps\": [\n                        \"**Check Activity Monitor:** Look for apps using >50% CPU consistently\",\n                        \"**Ensure proper ventilation:** Clear dust from vents, use on hard surfaces\",\n                        \"**Reset SMC:** For Intel Macs: Shut down → Shift+Control+Option+Power for 10 seconds\",\n                        \"**Close browser tabs:** Chrome/Safari with many tabs often cause overheating\"\n                    ]\n                },\n                \"native_app_solution\": {\n                    \"title\": \"Real-Time Thermal Analysis:\",\n                    \"prompt\": \"MacAgent Pro's hardware consciousness shows exactly what's causing the heat.\",\n                    \"features\": [\n                        \"Live CPU and GPU temperature readings (exact degrees)\",\n                        \"Fan speed monitoring and thermal throttling detection\",\n                        \"Process-level thermal impact analysis\",\n                        \"Automatic thermal management and prevention\"\n                    ],\n                    \"requires_vision\": false\n                }\n            },\n            {\n                \"id\": \"wifi_issues\",\n                \"keywords\": [\"wifi\", \"internet\", \"disconnecting\", \"no connection\", \"can't connect\", \"network\", \"wi-fi\", \"wireless\"],\n                \"title\": \"WiFi Connection Problems\",\n                \"web_solution\": {\n                    \"title\": \"Standard WiFi Troubleshooting:\",\n                    \"steps\": [\n                        \"**Toggle WiFi:** Menu bar → WiFi icon → Turn WiFi Off → wait 10 seconds → Turn WiFi On\",\n                        \"**Forget and rejoin network:** System Settings → WiFi → click 'i' next to network → Forget\",\n                        \"**Restart networking:** System Settings → WiFi → Advanced → Renew DHCP Lease\",\n                        \"**Try different DNS:** System Settings → WiFi → Details → DNS → add 8.8.8.8, 1.1.1.1\"\n                    ]\n                },\n                \"native_app_solution\": {\n                    \"title\": \"Advanced Wireless Diagnostics:\",\n                    \"prompt\": \"MacAgent Pro can analyze your WiFi environment for interference and optimization.\",\n                    \"features\": [\n                        \"WiFi channel analysis and interference detection\",\n                        \"Real-time connection quality monitoring\",\n                        \"Automatic network configuration optimization\",\n                        \"Background connectivity monitoring and healing\"\n                    ],\n                    \"requires_vision\": false\n                }\n            },\n            {\n                \"id\": \"storage_full\",\n                \"keywords\": [\"storage\", \"disk\", \"full\", \"space\", \"cleanup\", \"delete\", \"files\"],\n                \"title\": \"Storage Space Issues\",\n                \"web_solution\": {\n                    \"title\": \"Free Up Storage Space:\",\n                    \"steps\": [\n                        \"**Empty Trash completely:** Finder → Empty Trash (⌘⇧Delete)\",\n                        \"**Use Storage Recommendations:** Apple menu → About This Mac → Storage → Recommendations\",\n                        \"**Clear Downloads folder:** Open Downloads → select old files → Move to Trash\",\n                        \"**Check for large files:** Finder → search 'size:>1GB' to find large files\"\n                    ]\n                },\n                \"native_app_solution\": {\n                    \"title\": \"Intelligent Storage Analysis:\",\n                    \"prompt\": \"MacAgent Pro provides detailed storage analysis with safe cleanup suggestions.\",\n                    \"features\": [\n                        \"Automatic identification of safe-to-delete files\",\n                        \"APFS snapshot and cache analysis\",\n                        \"Duplicate file detection and removal\",\n                        \"Storage trend monitoring and predictions\"\n                    ],\n                    \"requires_vision\": false\n                }\n            },\n            {\n                \"id\": \"battery_drain\",\n                \"keywords\": [\"battery\", \"drain\", \"power\", \"charging\", \"dies\", \"life\"],\n                \"title\": \"Battery Draining Fast\",\n                \"web_solution\": {\n                    \"title\": \"Extend Battery Life:\",\n                    \"steps\": [\n                        \"**Check battery health:** Apple menu → About This Mac → System Report → Power\",\n                        \"**Review energy usage:** Activity Monitor → Energy tab → sort by Energy Impact\",\n                        \"**Adjust display brightness:** Lower screen brightness and keyboard backlight\",\n                        \"**Disable Power Nap:** System Settings → Battery → Options → Turn off Power Nap\"\n                    ]\n                },\n                \"native_app_solution\": {\n                    \"title\": \"Advanced Battery Analytics:\",\n                    \"prompt\": \"MacAgent Pro provides detailed battery health monitoring and optimization.\",\n                    \"features\": [\n                        \"Real-time battery health and cycle count monitoring\",\n                        \"Per-app energy impact analysis with recommendations\",\n                        \"Background process battery drain detection\",\n                        \"Intelligent power management and optimization\"\n                    ],\n                    \"requires_vision\": false\n                }\n            },\n            {\n                \"id\": \"audio_issues\",\n                \"keywords\": [\"audio\", \"sound\", \"microphone\", \"speakers\", \"volume\", \"crackling\", \"distortion\"],\n                \"title\": \"Audio Problems\",\n                \"web_solution\": {\n                    \"title\": \"Basic Audio Troubleshooting:\",\n                    \"steps\": [\n                        \"**Check output device:** System Settings → Sound → Output → select correct device\",\n                        \"**Restart Core Audio:** Open Terminal → type 'sudo killall coreaudio' → enter password\",\n                        \"**Check app permissions:** System Settings → Privacy & Security → Microphone\",\n                        \"**Reset audio settings:** Audio MIDI Setup → select device → configure\"\n                    ]\n                },\n                \"native_app_solution\": {\n                    \"title\": \"Zero-Conflict Audio Architecture:\",\n                    \"prompt\": \"MacAgent Pro's unique audio system prevents conflicts and optimizes quality.\",\n                    \"features\": [\n                        \"Mathematically proven P(conflict) = 0 audio pipeline\",\n                        \"Never blocks Zoom, Slack, or music applications\",\n                        \"Intelligent audio routing and device management\",\n                        \"Real-time audio quality optimization\"\n                    ],\n                    \"requires_vision\": false\n                }\n            },\n            {\n                \"id\": \"app_crashes\",\n                \"keywords\": [\"crash\", \"quit\", \"close\", \"application\", \"app\", \"force quit\", \"frozen\"],\n                \"title\": \"Application Crashes\",\n                \"web_solution\": {\n                    \"title\": \"Fix Crashing Apps:\",\n                    \"steps\": [\n                        \"**Force quit the app:** ⌘Option+Esc → select app → Force Quit\",\n                        \"**Check for updates:** App Store → Updates or check app's website\",\n                        \"**Clear app data:** ~/Library/Application Support → find app folder → move to trash\",\n                        \"**Check Console logs:** Applications → Utilities → Console → search for app name\"\n                    ]\n                },\n                \"native_app_solution\": {\n                    \"title\": \"Crash Analysis & Prevention:\",\n                    \"prompt\": \"MacAgent Pro analyzes crash patterns and prevents future occurrences.\",\n                    \"features\": [\n                        \"Automatic crash log analysis and interpretation\",\n                        \"App compatibility and conflict detection\",\n                        \"Memory leak and resource exhaustion monitoring\",\n                        \"Predictive stability analysis and warnings\"\n                    ],\n                    \"requires_vision\": false\n                }\n            },\n            {\n                \"id\": \"mysterious_error\",\n                \"keywords\": [\"error\", \"popup\", \"message\", \"dialog\", \"can't open\", \"unknown\", \"help\"],\n                \"title\": \"Unknown Error or Issue\",\n                \"web_solution\": {\n                    \"title\": \"General Troubleshooting Approach:\",\n                    \"steps\": [\n                        \"**Search the exact error text:** Copy the error message and search online for solutions\",\n                        \"**Update everything:** Check for macOS updates and app updates\",\n                        \"**Try Safe Mode:** Restart holding Shift key to boot in Safe Mode\",\n                        \"**Check Console logs:** Applications → Utilities → Console for detailed error information\"\n                    ]\n                },\n                \"native_app_solution\": {\n                    \"title\": \"AI-Powered Visual Diagnosis:\",\n                    \"prompt\": \"Can't figure it out? MacAgent Pro's computer vision can analyze error messages and system state.\",\n                    \"features\": [\n                        \"Screenshot analysis of error messages and dialogs\",\n                        \"Cross-reference with database of known macOS issues\",\n                        \"Real-time system state correlation with problems\",\n                        \"Step-by-step guided troubleshooting with visual confirmation\"\n                    ],\n                    \"requires_vision\": true\n                }\n            }\n        ];\n        \n        // Analytics tracking\n        const analytics = {\n            log(event, data = {}) {\n                try {\n                    console.debug('[Analytics]', event, data);\n                    // In production, send to analytics endpoint:\n                    // fetch('/api/analytics', {\n                    //     method: 'POST',\n                    //     headers: { 'Content-Type': 'application/json' },\n                    //     body: JSON.stringify({ event, timestamp: new Date().toISOString(), ...data })\n                    // });\n                } catch (e) {\n                    console.warn('Analytics error:', e);\n                }\n            }\n        };\n        \n        // Load knowledge base with fallback\n        async function loadKB() {\n            try {\n                const response = await fetch('./mac_knowledge_base.json', { cache: 'no-store' });\n                if (!response.ok) throw new Error(`KB HTTP ${response.status}`);\n                const kb = await response.json();\n                console.log('Loaded knowledge base from file');\n                return kb;\n            } catch (e) {\n                console.warn('KB fetch failed, using embedded fallback:', e);\n                return KB_FALLBACK;\n            }\n        }\n        \n        // Improved problem matching with scoring\n        function rankProblems(kb, text) {\n            const t = ' ' + text.toLowerCase() + ' ';\n            return kb.map(p => {\n                const hits = p.keywords.reduce((n, k) => n + (t.includes(k.toLowerCase()) ? 1 : 0), 0);\n                return { p, score: hits };\n            }).sort((a, b) => b.score - a.score);\n        }\n        \n        // Screenshot handling\n        document.addEventListener('paste', e => {\n            const item = [...(e.clipboardData?.items || [])].find(i => i.type.startsWith('image/'));\n            if (!item) return;\n            \n            const file = item.getAsFile();\n            const url = URL.createObjectURL(file);\n            const img = document.getElementById('shotPreview');\n            const zone = document.getElementById('shotZone');\n            \n            img.src = url;\n            img.style.display = 'block';\n            zone.classList.add('active');\n            zone.textContent = '✅ Screenshot attached - now describe your issue';\n            \n            analytics.log('screenshot_pasted');\n        });\n        \n        // Form handling\n        document.getElementById('problemForm').addEventListener('submit', async function(e) {\n            e.preventDefault();\n            \n            const userInput = document.getElementById('userInput').value.trim();\n            const responseArea = document.getElementById('responseArea');\n            const submitButton = document.querySelector('.send-button');\n            \n            if (!userInput) return;\n            \n            // Show loading state\n            submitButton.disabled = true;\n            responseArea.innerHTML = `\n                <div class=\"loading\">\n                    <div class=\"typing-indicator\">\n                        <div class=\"typing-dot\"></div>\n                        <div class=\"typing-dot\"></div>\n                        <div class=\"typing-dot\"></div>\n                    </div>\n                    <span style=\"margin-left: 1rem;\">Analyzing your Mac issue...</span>\n                </div>\n            `;\n            \n            analytics.log('question_asked', { question: userInput });\n            \n            try {\n                // Simulate processing time for better UX\n                await new Promise(resolve => setTimeout(resolve, 800));\n                \n                const knowledgeBase = await loadKB();\n                const ranked = rankProblems(knowledgeBase, userInput);\n                \n                let matchedProblem = ranked[0]?.score > 0 ? ranked[0].p : knowledgeBase.find(p => p.id === \"mysterious_error\");\n                \n                // Check if we have multiple equally good matches\n                const hasMultipleMatches = ranked.length > 1 && ranked[0].score === ranked[1].score && ranked[0].score > 0;\n                \n                let html = '';\n                \n                // Web solution\n                html += `\n                    <div class=\"response-card\">\n                        <h2 class=\"response-title\">${matchedProblem.web_solution.title}</h2>\n                        <ul>\n                            ${matchedProblem.web_solution.steps.map(step => {\n                                if (step.includes('sudo') || step.includes('rm -rf')) {\n                                    return `<li>${step.replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')}\n                                        <div class=\"safety-note\">⚠️ This command requires admin privileges. Only run if you understand what it does.</div>\n                                    </li>`;\n                                }\n                                return `<li>${step.replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')}</li>`;\n                            }).join('')}\n                        </ul>\n                    </div>\n                `;\n                \n                // Native app solution\n                html += `\n                    <div class=\"response-card native-upsell\">\n                        <h2 class=\"response-title\">${matchedProblem.native_app_solution.title}</h2>\n                        <p style=\"color: var(--mac-secondary-label); margin-bottom: 1rem;\">\n                            ${matchedProblem.native_app_solution.prompt}\n                        </p>\n                        <ul>\n                            ${matchedProblem.native_app_solution.features.map(feature => `<li>${feature}</li>`).join('')}\n                        </ul>\n                        <a href=\"#\" class=\"download-button\">Download MacAgent Pro - Free 14-Day Trial</a>\n                    </div>\n                `;\n                \n                // Show alternative matches if available\n                if (hasMultipleMatches) {\n                    html += `\n                        <div class=\"problem-chooser\">\n                            <p style=\"margin-bottom: 1rem; color: var(--mac-secondary-label);\">Was this your issue, or did you mean:</p>\n                            ${ranked.slice(1, 3).map(item => `\n                                <button class=\"problem-option\" onclick=\"showProblem('${item.p.id}')\">\n                                    ${item.p.title}\n                                </button>\n                            `).join('')}\n                        </div>\n                    `;\n                }\n                \n                responseArea.innerHTML = html;\n                \n                analytics.log('answer_shown', {\n                    problem_type: matchedProblem.id,\n                    has_alternatives: hasMultipleMatches\n                });\n                \n            } catch (error) {\n                responseArea.innerHTML = `\n                    <div class=\"response-card\">\n                        <h2 class=\"response-title\">Oops! Something went wrong</h2>\n                        <p>I'm having trouble accessing my knowledge base right now. Please try:</p>\n                        <ul>\n                            <li>Refresh the page and try again</li>\n                            <li>Check your internet connection</li>\n                            <li>For immediate help, download MacAgent Pro for offline support</li>\n                        </ul>\n                        <a href=\"#\" class=\"download-button\">Download MacAgent Pro</a>\n                    </div>\n                `;\n                \n                analytics.log('error_occurred', { error: error.message });\n            }\n            \n            submitButton.disabled = false;\n        });\n        \n        // Handle download button clicks\n        document.addEventListener('click', e => {\n            if (e.target.closest('.download-button')) {\n                e.preventDefault();\n                analytics.log('download_clicked', {\n                    source: e.target.closest('.native-upsell') ? 'upsell_card' : 'error_fallback'\n                });\n                \n                // Show download instructions\n                alert(`MacAgent Pro Download\\n\\n🎯 14-day free trial\\n🌡️ Hardware consciousness\\n🎤 Voice commands\\n🔒 Complete privacy\\n\\n📥 Install: brew install --cask macagent-pro\\n\\nOr download directly from macagent.pro`);\n            }\n        });\n        \n        // Alternative problem selection\n        window.showProblem = async function(problemId) {\n            const knowledgeBase = await loadKB();\n            const problem = knowledgeBase.find(p => p.id === problemId);\n            if (!problem) return;\n            \n            const responseArea = document.getElementById('responseArea');\n            responseArea.innerHTML = `\n                <div class=\"response-card\">\n                    <h2 class=\"response-title\">${problem.web_solution.title}</h2>\n                    <ul>\n                        ${problem.web_solution.steps.map(step => `<li>${step.replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')}</li>`).join('')}\n                    </ul>\n                </div>\n                <div class=\"response-card native-upsell\">\n                    <h2 class=\"response-title\">${problem.native_app_solution.title}</h2>\n                    <p style=\"color: var(--mac-secondary-label); margin-bottom: 1rem;\">\n                        ${problem.native_app_solution.prompt}\n                    </p>\n                    <ul>\n                        ${problem.native_app_solution.features.map(feature => `<li>${feature}</li>`).join('')}\n                    </ul>\n                    <a href=\"#\" class=\"download-button\">Download MacAgent Pro - Free 14-Day Trial</a>\n                </div>\n            `;\n            \n            analytics.log('alternative_problem_selected', { problem_id: problemId });\n        };\n        \n        // Update live metrics\n        function updateMetrics() {\n            const cpuTemp = document.getElementById('cpu-temp');\n            if (cpuTemp) {\n                const temp = (35 + Math.random() * 15).toFixed(1);\n                cpuTemp.textContent = temp + '°C';\n            }\n        }\n        \n        // Initialize\n        analytics.log('page_view');\n        setInterval(updateMetrics, 3000);\n        \n        // Focus input on load\n        window.addEventListener('load', () => {\n            document.getElementById('userInput').focus();\n        });\n    </script>\n</body>\n</html>

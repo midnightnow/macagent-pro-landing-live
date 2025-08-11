@@ -1,0 +1,19 @@
+{
+  "name": "macagent-pro-landing-live",
+  "version": "1.0.0",
+  "main": "analytics-tracker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@slack/web-api": "^7.9.3",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "ws": "^8.18.3"
+  }
+}

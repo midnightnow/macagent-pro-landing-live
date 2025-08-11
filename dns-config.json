@@ -1,0 +1,44 @@
+{
+  "Comment": "MacAgent Pro v1.0.2 DNS Configuration",
+  "Changes": [
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "macagent.pro",
+        "Type": "A",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "YOUR_SERVER_IP_HERE"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT", 
+      "ResourceRecordSet": {
+        "Name": "legend.macagent.pro",
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "macagent.pro"
+          }
+        ]
+      }
+    },
+    {
+      "Action": "UPSERT",
+      "ResourceRecordSet": {
+        "Name": "metrics.macagent.pro", 
+        "Type": "CNAME",
+        "TTL": 300,
+        "ResourceRecords": [
+          {
+            "Value": "macagent.pro"
+          }
+        ]
+      }
+    }
+  ]
+}

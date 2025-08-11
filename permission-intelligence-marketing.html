@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacAgent Pro - Deep Permissions = Superior Intelligence</title>
+    <style>
+        :root {
+            --sf-pro: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+            --blue: #007AFF;
+            --green: #30D158;
+            --orange: #FF9500;
+            --red: #FF3B30;
+            --purple: #AF52DE;
+            --gray: #8E8E93;
+            --background: #FFFFFF;
+            --secondary: #F2F2F7;
+        }
+        
+        body {
+            font-family: var(--sf-pro);
+            background: var(--background);
+            color: #1D1D1F;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intelligence-scale {
+            background: var(--secondary);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .scale-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .scale-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+        
+        .intelligence-bars {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .intelligence-bar {
+            flex: 1;
+            background: white;
+            border-radius: 16px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .intelligence-bar:hover {
+            transform: translateY(-4px);
+        }
+        
+        .bar-header {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .percentage {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+        
+        .bar-basic .percentage { color: var(--gray); }
+        .bar-pro .percentage { color: var(--blue); }
+        .bar-max .percentage { color: var(--orange); }
+        .bar-ultra .percentage { color: var(--purple); }
+        
+        .progress-bar {
+            height: 8px;
+            background: #E5E5EA;
+            border-radius: 4px;
+            margin: 16px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 2s ease;
+        }
+        
+        .bar-basic .progress-fill { background: var(--gray); width: 30%; }
+        .bar-pro .progress-fill { background: var(--blue); width: 50%; }
+        .bar-max .progress-fill { background: var(--orange); width: 70%; }
+        .bar-ultra .progress-fill { background: var(--purple); width: 100%; }
+        
+        .permissions-list {
+            text-align: left;
+            font-size: 14px;
+            color: #6E6E73;
+            margin-top: 16px;
+        }
+        
+        .permissions-list li {
+            margin: 8px 0;
+        }
+        
+        .capability-comparison {
+            padding: 80px 20px;
+        }
+        
+        .comparison-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .comparison-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 60px;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #E5E5EA;
+        }
+        
+        .comparison-table th {
+            background: var(--secondary);
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .speed-highlight {
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        
+        .speed-slow { background: #FFE5E5; color: var(--red); }
+        .speed-medium { background: #FFF3E0; color: var(--orange); }
+        .speed-fast { background: #E8F5E8; color: var(--green); }
+        .speed-ultra { background: #F0E6FF; color: var(--purple); }
+        
+        .permission-showcase {
+            background: var(--secondary);
+            padding: 80px 20px;
+        }
+        
+        .showcase-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .showcase-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 60px;
+        }
+        
+        .permission-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .permission-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .permission-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .permission-icon {
+            font-size: 32px;
+            margin-right: 16px;
+        }
+        
+        .permission-name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .permission-benefit {
+            color: var(--green);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .permission-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .permission-features li {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #6E6E73;
+        }
+        
+        .permission-features li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .cta-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .cta-button {
+            background: white;
+            color: var(--purple);
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .intelligence-bars {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .comparison-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Deep Permissions = Superior Intelligence</h1>
+        <p>MacAgent's hardware-aware AI gets smarter with every permission you grant. See how each access level unlocks exponentially better Mac intelligence.</p>
+    </div>
+    
+    <div class="intelligence-scale">
+        <div class="scale-container">
+            <h2 class="scale-title">Permission → Intelligence Mapping</h2>
+            <p style="font-size: 18px; color: #6E6E73; margin-bottom: 40px;">Each macOS permission unlocks specific AI capabilities. More permissions = more intelligence.</p>
+            
+            <div class="intelligence-bars">
+                <div class="intelligence-bar bar-basic">
+                    <div class="bar-header">No Permissions</div>
+                    <div class="percentage">30%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div style="font-weight: 600; margin-bottom: 12px;">Basic Mac Intelligence</div>
+                    <ul class="permissions-list">
+                        <li>CPU/Memory/Disk stats</li>
+                        <li>Network connectivity</li>
+                        <li>Process monitoring</li>
+                        <li>Generic troubleshooting</li>
+                    </ul>
+                </div>
+                
+                <div class="intelligence-bar bar-pro">
+                    <div class="bar-header">Basic Permissions</div>
+                    <div class="percentage">50%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div style="font-weight: 600; margin-bottom: 12px;">Pro Intelligence</div>
+                    <ul class="permissions-list">
+                        <li>+ Accessibility monitoring</li>
+                        <li>+ UI interaction detection</li>
+                        <li>+ Real-time diagnostics</li>
+                        <li>+ Automated basic fixes</li>
+                    </ul>
+                </div>
+                
+                <div class="intelligence-bar bar-max">
+                    <div class="bar-header">Elevated Permissions</div>
+                    <div class="percentage">80%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div style="font-weight: 600; margin-bottom: 12px;">Max Intelligence</div>
+                    <ul class="permissions-list">
+                        <li>+ Full automation control</li>
+                        <li>+ System service restarts</li>
+                        <li>+ Advanced cache clearing</li>
+                        <li>+ AppleScript execution</li>
+                    </ul>
+                </div>
+                
+                <div class="intelligence-bar bar-ultra">
+                    <div class="bar-header">Full Permissions</div>
+                    <div class="percentage">100%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div style="font-weight: 600; margin-bottom: 12px;">Ultra Intelligence</div>
+                    <ul class="permissions-list">
+                        <li>+ Full Disk Access</li>
+                        <li>+ Screen Recording AI</li>
+                        <li>+ Deep system analysis</li>
+                        <li>+ Predictive failure detection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="capability-comparison">
+        <div class="comparison-container">
+            <h2 class="comparison-title">Speed Improvements from Permissions</h2>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Diagnostic Task</th>
+                            <th>Manual Method</th>
+                            <th>MacAgent Pro</th>
+                            <th>MacAgent Max</th>
+                            <th>MacAgent Ultra</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Find Large Files</strong></td>
+                            <td><span class="speed-highlight speed-slow">10 minutes</span><br><small>Navigate Finder manually</small></td>
+                            <td><span class="speed-highlight speed-medium">30 seconds</span><br><small>Basic directory scan</small></td>
+                            <td><span class="speed-highlight speed-fast">5 seconds</span><br><small>Automated enumeration</small></td>
+                            <td><span class="speed-highlight speed-ultra">0.8 seconds</span><br><small>Indexed full disk access</small></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Diagnose App Crashes</strong></td>
+                            <td><span class="speed-highlight speed-slow">15 minutes</span><br><small>Check Console, Google errors</small></td>
+                            <td><span class="speed-highlight speed-medium">2 minutes</span><br><small>Process monitoring</small></td>
+                            <td><span class="speed-highlight speed-fast">30 seconds</span><br><small>Automated log parsing</small></td>
+                            <td><span class="speed-highlight speed-ultra">Instant</span><br><small>AI reads crash reports</small></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fix Audio Conflicts</strong></td>
+                            <td><span class="speed-highlight speed-slow">Restart Mac</span><br><small>Nuclear option</small></td>
+                            <td><span class="speed-highlight speed-medium">5 minutes</span><br><small>Identify conflicting apps</small></td>
+                            <td><span class="speed-highlight speed-fast">1 click</span><br><small>Automated coreaudiod restart</small></td>
+                            <td><span class="speed-highlight speed-ultra">Auto-prevent</span><br><small>Zero-conflict architecture</small></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clear System Caches</strong></td>
+                            <td><span class="speed-highlight speed-slow">20 minutes</span><br><small>Navigate to ~/Library manually</small></td>
+                            <td><span class="speed-highlight speed-medium">5 minutes</span><br><small>User cache access only</small></td>
+                            <td><span class="speed-highlight speed-fast">30 seconds</span><br><small>Automated cleaning</small></td>
+                            <td><span class="speed-highlight speed-ultra">2 seconds</span><br><small>Parallel system cache deletion</small></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Read Error Dialogs</strong></td>
+                            <td><span class="speed-highlight speed-slow">Manual typing</span><br><small>Screenshot → Google search</small></td>
+                            <td><span class="speed-highlight speed-medium">Type error</span><br><small>Manual transcription</small></td>
+                            <td><span class="speed-highlight speed-fast">Screenshot</span><br><small>Visual analysis</small></td>
+                            <td><span class="speed-highlight speed-ultra">Auto-OCR</span><br><small>Instant AI text recognition</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; font-size: 18px; color: #6E6E73;">
+                <strong>Speed Multiplier: 50-300x faster with full permissions</strong>
+            </div>
+        </div>
+    </div>
+    
+    <div class="permission-showcase">
+        <div class="showcase-container">
+            <h2 class="showcase-title">How Each Permission Unlocks Intelligence</h2>
+            
+            <div class="permission-cards">
+                <div class="permission-card">
+                    <div class="permission-header">
+                        <div class="permission-icon">💾</div>
+                        <div class="permission-name">Full Disk Access</div>
+                    </div>
+                    <div class="permission-benefit">+90% more accurate root cause analysis</div>
+                    <ul class="permission-features">
+                        <li>Read system logs for crash patterns</li>
+                        <li>Analyze Time Machine local snapshots</li>
+                        <li>Scan ~/Library for corrupt preferences</li>
+                        <li>Access diagnostic reports in /var/log</li>
+                        <li>Find large hidden caches in system folders</li>
+                    </ul>
+                </div>
+                
+                <div class="permission-card">
+                    <div class="permission-header">
+                        <div class="permission-icon">👁️</div>
+                        <div class="permission-name">Accessibility</div>
+                    </div>
+                    <div class="permission-benefit">See what you see, fix what's frozen</div>
+                    <ul class="permission-features">
+                        <li>Monitor actual UI responsiveness</li>
+                        <li>Detect frozen background apps</li>
+                        <li>Measure real click-to-response times</li>
+                        <li>Track beach ball frequency/duration</li>
+                        <li>Auto-dismiss system dialogs during fixes</li>
+                    </ul>
+                </div>
+                
+                <div class="permission-card">
+                    <div class="permission-header">
+                        <div class="permission-icon">📱</div>
+                        <div class="permission-name">Screen Recording</div>
+                    </div>
+                    <div class="permission-benefit">0.2s to read any error dialog</div>
+                    <ul class="permission-features">
+                        <li>Analyze actual rendering glitches</li>
+                        <li>Detect GPU memory pressure visually</li>
+                        <li>Monitor external display sync issues</li>
+                        <li>Capture kernel panic screens</li>
+                        <li>Read error dialogs automatically</li>
+                    </ul>
+                </div>
+                
+                <div class="permission-card">
+                    <div class="permission-header">
+                        <div class="permission-icon">⚙️</div>
+                        <div class="permission-name">Automation</div>
+                    </div>
+                    <div class="permission-benefit">1-click vs 10 Terminal commands</div>
+                    <ul class="permission-features">
+                        <li>Execute AppleScript fixes</li>
+                        <li>Restart hung system services</li>
+                        <li>Clear DNS cache automatically</li>
+                        <li>Reset Bluetooth module</li>
+                        <li>Rebuild Spotlight index</li>
+                    </ul>
+                </div>
+                
+                <div class="permission-card">
+                    <div class="permission-header">
+                        <div class="permission-icon">📊</div>
+                        <div class="permission-name">System Events</div>
+                    </div>
+                    <div class="permission-benefit">Real-time vs post-mortem analysis</div>
+                    <ul class="permission-features">
+                        <li>Monitor real-time CPU spikes</li>
+                        <li>Track memory allocation patterns</li>
+                        <li>Detect thermal throttle events</li>
+                        <li>Watch kernel extension conflicts</li>
+                        <li>Profile energy impact per app</li>
+                    </ul>
+                </div>
+                
+                <div class="permission-card">
+                    <div class="permission-header">
+                        <div class="permission-icon">🔐</div>
+                        <div class="permission-name">Privacy First</div>
+                    </div>
+                    <div class="permission-benefit">Your data never leaves your Mac</div>
+                    <ul class="permission-features">
+                        <li>All processing happens locally</li>
+                        <li>No cloud dependencies</li>
+                        <li>Complete transparency about access</li>
+                        <li>Easy permission revocation</li>
+                        <li>Open source permission usage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cta-section">
+        <h2 class="cta-title">Unlock Your Mac's Full Intelligence</h2>
+        <p class="cta-subtitle">Experience hardware-aware AI that gets smarter with every permission you grant</p>
+        <button class="cta-button" onclick="window.open('https://macagent.pro', '_blank')">Try MacAgent Ultra Free</button>
+        <div style="margin-top: 20px; font-size: 14px; opacity: 0.8;">
+            14-day free trial • No credit card required • Revoke permissions anytime
+        </div>
+    </div>
+    
+    <script>
+        // Animate progress bars when they come into view
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.progress-fill');
+                    progressBars.forEach(bar => {
+                        bar.style.transition = 'width 2s ease';
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        // Observe the intelligence scale section
+        const intelligenceScale = document.querySelector('.intelligence-scale');
+        observer.observe(intelligenceScale);
+    </script>
+</body>
+</html>

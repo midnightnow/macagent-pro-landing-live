@@ -1,0 +1,62 @@
+{
+  "campaign_name": "VetSorcery Emergency Coverage Launch - Q1 2025",
+  "smtp_server": "smtp.gmail.com",
+  "smtp_port": 587,
+  "email_address": "alex@vetsorcery.com",
+  "email_password": "your-gmail-app-password-here",
+  "daily_send_limit": 50,
+  "send_delay_seconds": 120,
+  "tracking_domain": "https://vetsorcery.com",
+  "stripe_link": "https://buy.stripe.com/emergency-phone-coverage",
+  "campaign_settings": {
+    "target_audience": "veterinary_clinics",
+    "clinic_size_filter": "5-50_employees", 
+    "geographic_focus": ["TX", "CA", "FL", "NY", "PA"],
+    "pain_points_priority": ["after_hours_calls", "missed_emergencies", "staff_overwhelm"],
+    "decision_makers": ["practice_owners", "practice_managers", "head_veterinarians"]
+  },
+  "email_sequence": {
+    "phase_1_initial": {
+      "delay_days": 0,
+      "subject_variants": [
+        "Stop missing urgent calls at {clinic_name} - 24/7 phone coverage solution",
+        "Never miss another emergency call - {clinic_name} exclusive pilot",
+        "Cut after-hours staffing costs 80% at {clinic_name}"
+      ],
+      "send_time": "10:00 AM local"
+    },
+    "phase_2_followup": {
+      "delay_days": 3,
+      "subject_variants": [
+        "Quick follow-up: 24/7 phone coverage for {clinic_name}",
+        "Still losing calls? {clinic_name} pilot closing soon",
+        "3-minute solution for {clinic_name}'s call management"
+      ],
+      "send_time": "2:00 PM local"
+    },
+    "phase_3_urgency": {
+      "delay_days": 7,
+      "subject_variants": [
+        "Last chance: Founding partner spots closing for {state} vets",
+        "Final notice: {clinic_name} priority access expires Friday",
+        "48 hours left - VetSorcery pilot for {clinic_name}"
+      ],
+      "send_time": "9:00 AM local"
+    }
+  },
+  "success_metrics": {
+    "target_open_rate": "35-45%",
+    "target_click_rate": "8-12%", 
+    "target_response_rate": "3-5%",
+    "target_conversion_rate": "1-2%",
+    "target_revenue_per_100_emails": "$2,485-$4,970",
+    "cost_per_acquisition": "$124-$248"
+  },
+  "compliance": {
+    "can_spam_compliant": true,
+    "unsubscribe_link": true,
+    "physical_address_required": true,
+    "sender_identification": "VetSorcery, Austin TX",
+    "opt_out_processing": "automatic_within_24_hours"
+  }
+}

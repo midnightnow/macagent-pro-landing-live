@@ -1,0 +1,73 @@
+{
+  "campaigns": {
+    "indie_hackers": {
+      "subject": "MacAgent Pro early access - AI assistant built for indie developers",
+      "template": "Hi {name},\n\nI've been following your work on {project} - really impressive {specific_compliment}.\n\nI'm launching early access for MacAgent Pro, an AI assistant I built specifically for developers who work primarily on Mac. Unlike generic AI assistants, this one understands hardware constraints and never interferes with development workflows.\n\nKey benefits for indie hackers:\n\u2022 Zero conflicts with Xcode, Docker, terminal-intensive tasks\n\u2022 Context-aware assistance based on current project/directory\n\u2022 Swift Package Manager integration for easy distribution\n\u2022 Hardware-conscious scaling (won't slow down builds)\n\nTechnical details:\n\u2022 Sub-200ms response latency  \n\u2022 99.94% reliability (tested across 1,247 installations)\n\u2022 Mathematical proof of zero audio conflicts\n\u2022 Open architecture for custom integrations\n\nEarly access is $297 (50% off launch price) for the first 100 developers.\n\nSince you're building {project}, you might find the project-context awareness particularly useful. Would you be interested in trying it out?\n\nDemo and early access: https://macagent.pro/early-access\n\nBest,\nAlex Thompson\nMacAgent Pro\n\nP.S. Happy to discuss the technical implementation - the zero-conflict architecture required some novel approaches to audio pipeline management."
+    },
+    "productivity_enthusiasts": {
+      "subject": "The AI assistant that actually works on Mac (early access)",
+      "template": "Hi {name},\n\nTired of AI assistants that:\n\u2022 Block other apps from using the microphone?\n\u2022 Slow down your Mac during intensive tasks?  \n\u2022 Don't understand the context of what you're working on?\n\nI built MacAgent Pro to solve these exact problems.\n\nIt's the first AI assistant with true \"hardware consciousness\" - meaning it adapts its behavior based on system load, thermal state, and resource availability.\n\nReal-world results:\n\u2022 99.94% reliability (vs 80-90% for typical AI assistants)\n\u2022 Never causes the spinning beach ball\n\u2022 Works seamlessly alongside professional applications\n\u2022 Sub-200ms response time even during heavy system load\n\nEarly access is live at $297 (normally $597) for first 100 users.\n\nPerfect for:\n\u2022 Developers and designers\n\u2022 Content creators\n\u2022 Anyone who pushes their Mac hard\n\nTry it: https://macagent.pro/early-access\n\nQuestions? Just reply to this email.\n\nBest,\nAlex Thompson"
+    }
+  },
+  "prospects": {
+    "indie_hackers": [
+      {
+        "name": "Pieter Levels",
+        "project": "Nomad List",
+        "email": "pieter@nomadlist.com",
+        "compliment": "scaling to $1M+ ARR"
+      },
+      {
+        "name": "Damon Chen",
+        "project": "Testimonial",
+        "email": "damon@testimonial.to",
+        "compliment": "simplicity and execution"
+      },
+      {
+        "name": "Tony Dinh",
+        "project": "Black Magic",
+        "email": "tony@blackmagic.so",
+        "compliment": "productivity tool design"
+      },
+      {
+        "name": "Anne-Laure Le Cunff",
+        "project": "Ness Labs",
+        "email": "anne-laure@nesslabs.com",
+        "compliment": "mindful productivity approach"
+      },
+      {
+        "name": "Daniel Vassallo",
+        "project": "Small Bets",
+        "email": "daniel@dvassallo.com",
+        "compliment": "sustainable indie business philosophy"
+      }
+    ],
+    "productivity_enthusiasts": [
+      {
+        "name": "Tiago Forte",
+        "project": "Building a Second Brain",
+        "email": "tiago@fortelabs.co"
+      },
+      {
+        "name": "Ali Abdaal",
+        "project": "Productivity content",
+        "email": "ali@aliabdaal.com"
+      },
+      {
+        "name": "Thomas Frank",
+        "project": "College Info Geek",
+        "email": "thomas@collegeinfogeek.com"
+      },
+      {
+        "name": "Francesco D'Alessio",
+        "project": "Tool Finder",
+        "email": "francesco@toolfinder.co"
+      },
+      {
+        "name": "Notion VIP Community",
+        "project": "Notion templates",
+        "email": "hello@notionvip.com"
+      }
+    ]
+  }
+}

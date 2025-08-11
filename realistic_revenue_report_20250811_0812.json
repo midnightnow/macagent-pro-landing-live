@@ -1,0 +1,245 @@
+{
+  "executive_summary": {
+    "pricing_model": "Freemium SaaS: $10/$20/$30 monthly",
+    "year_1_mrr": 11420,
+    "year_1_customers": 789,
+    "total_annual_revenue": 81080,
+    "average_revenue_per_user": 102.76299112801014
+  },
+  "monthly_projections": [
+    {
+      "month": 1,
+      "new_customers": 90,
+      "total_customers": 86,
+      "customer_breakdown": {
+        "starter": 52,
+        "pro": 30,
+        "enterprise": 4
+      },
+      "mrr": 1240,
+      "cumulative_revenue": 1240,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 2,
+      "new_customers": 90,
+      "total_customers": 167,
+      "customer_breakdown": {
+        "starter": 101,
+        "pro": 58,
+        "enterprise": 8
+      },
+      "mrr": 2410,
+      "cumulative_revenue": 3650,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 3,
+      "new_customers": 90,
+      "total_customers": 245,
+      "customer_breakdown": {
+        "starter": 148,
+        "pro": 85,
+        "enterprise": 12
+      },
+      "mrr": 3540,
+      "cumulative_revenue": 7190,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 4,
+      "new_customers": 90,
+      "total_customers": 319,
+      "customer_breakdown": {
+        "starter": 192,
+        "pro": 111,
+        "enterprise": 16
+      },
+      "mrr": 4620,
+      "cumulative_revenue": 11810,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 5,
+      "new_customers": 90,
+      "total_customers": 388,
+      "customer_breakdown": {
+        "starter": 234,
+        "pro": 135,
+        "enterprise": 19
+      },
+      "mrr": 5610,
+      "cumulative_revenue": 17420,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 6,
+      "new_customers": 90,
+      "total_customers": 454,
+      "customer_breakdown": {
+        "starter": 274,
+        "pro": 158,
+        "enterprise": 22
+      },
+      "mrr": 6560,
+      "cumulative_revenue": 23980,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 7,
+      "new_customers": 90,
+      "total_customers": 517,
+      "customer_breakdown": {
+        "starter": 312,
+        "pro": 180,
+        "enterprise": 25
+      },
+      "mrr": 7470,
+      "cumulative_revenue": 31450,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 8,
+      "new_customers": 90,
+      "total_customers": 577,
+      "customer_breakdown": {
+        "starter": 348,
+        "pro": 201,
+        "enterprise": 28
+      },
+      "mrr": 8340,
+      "cumulative_revenue": 39790,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 9,
+      "new_customers": 90,
+      "total_customers": 634,
+      "customer_breakdown": {
+        "starter": 382,
+        "pro": 221,
+        "enterprise": 31
+      },
+      "mrr": 9170,
+      "cumulative_revenue": 48960,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 10,
+      "new_customers": 90,
+      "total_customers": 689,
+      "customer_breakdown": {
+        "starter": 415,
+        "pro": 240,
+        "enterprise": 34
+      },
+      "mrr": 9970,
+      "cumulative_revenue": 58930,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 11,
+      "new_customers": 90,
+      "total_customers": 741,
+      "customer_breakdown": {
+        "starter": 446,
+        "pro": 258,
+        "enterprise": 37
+      },
+      "mrr": 10730,
+      "cumulative_revenue": 69660,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    },
+    {
+      "month": 12,
+      "new_customers": 90,
+      "total_customers": 789,
+      "customer_breakdown": {
+        "starter": 475,
+        "pro": 275,
+        "enterprise": 39
+      },
+      "mrr": 11420,
+      "cumulative_revenue": 81080,
+      "trial_metrics": {
+        "signups": 800,
+        "completions": 360
+      }
+    }
+  ],
+  "improvement_scenarios": {
+    "baseline": {
+      "six_month_revenue": 23980,
+      "total_customers": 454,
+      "improvement_factor": 1.0
+    },
+    "improved_install": {
+      "six_month_revenue": 44720,
+      "total_customers": 844,
+      "improvement_factor": 4.993858179787828
+    },
+    "improved_onboarding": {
+      "six_month_revenue": 37720,
+      "total_customers": 710,
+      "improvement_factor": 4.212171970965941
+    },
+    "optimized_conversion": {
+      "six_month_revenue": 38530,
+      "total_customers": 727,
+      "improvement_factor": 4.302624232272473
+    },
+    "all_improved": {
+      "six_month_revenue": 112210,
+      "total_customers": 2120,
+      "improvement_factor": 12.530429927414852
+    }
+  },
+  "key_insights": [
+    "With current funnel: $11420/month MRR in 12 months",
+    "Installation improvements could increase revenue by 5.0x",
+    "Better onboarding could increase revenue by 4.2x",
+    "All improvements combined: 12.5x revenue potential",
+    "Focus areas: 1) Smooth installation, 2) Trial onboarding, 3) Value demonstration"
+  ],
+  "recommendations": [
+    "Build signed macOS app with one-click install",
+    "Create interactive onboarding that shows hardware consciousness immediately",
+    "Implement trial analytics to optimize conversion points",
+    "Add usage-based upgrade prompts in app",
+    "Focus on retention over acquisition initially"
+  ],
+  "generated_at": "2025-08-11T08:12:03.306088"
+}

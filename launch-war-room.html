@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Launch War Room</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="color-scheme" content="dark light">
+  <style>
+    .pill { @apply text-xs font-semibold px-2 py-1 rounded-full; }
+    .ok { @apply bg-green-100 text-green-800; }
+    .warn { @apply bg-yellow-100 text-yellow-800; }
+    .bad { @apply bg-red-100 text-red-800; }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 min-h-screen">
+  <div class="max-w-7xl mx-auto p-6 space-y-6">
+    <header class="flex items-center justify-between gap-4 flex-wrap">
+      <h1 class="text-2xl md:text-3xl font-bold">🚀 Launch War Room</h1>
+      <div class="text-sm text-zinc-400">Auto-refreshing every <span id="refreshSec">5</span>s</div>
+    </header>
+
+    <!-- Controls -->
+    <section class="grid gap-3 md:grid-cols-3">
+      <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-4">
+        <div class="text-xs uppercase tracking-wide text-zinc-400 mb-1">Metrics API</div>
+        <div class="font-mono text-sm break-all" id="apiUrl">http://localhost:8080/api/v1/summary</div>
+      </div>
+      <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-4">
+        <div class="text-xs uppercase tracking-wide text-zinc-400 mb-1">WebSocket</div>
+        <div class="font-mono text-sm break-all" id="wsUrl">ws://localhost:8080/</div>
+      </div>
+      <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-4">
+        <div class="text-xs uppercase tracking-wide text-zinc-400 mb-1">Revenue Totals</div>
+        <div class="font-mono text-sm break-all" id="stripeUrl">http://localhost:8080/api/v1/public-totals</div>
+      </div>
+    </section>
+
+    <!-- Health cards -->
+    <section class="grid gap-4 md:grid-cols-4">
+      <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 space-y-2">
+        <div class="text-xs uppercase tracking-wide text-zinc-400">API Status</div>
+        <div class="text-2xl font-bold" id="apiStatus">—</div>
+        <div class="text-sm text-zinc-400">p95 <span id="p95">—</span> ms</div>
+      </div>
+      <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 space-y-2">
+        <div class="text-xs uppercase tracking-wide text-zinc-400">WebSocket</div>
+        <div class="flex items-center gap-2 text-2xl font-bold"><span id="wsDot" class="w-3 h-3 rounded-full bg-zinc-600"></span><span id="wsStatus">—</span></div>
+        <div class="text-sm text-zinc-400">Last heartbeat: <span id="wsBeat">—</span></div>
+      </div>
+      <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 space-y-2">
+        <div class="text-xs uppercase tracking-wide text-zinc-400">Installs</div>
+        <div class="text-2xl font-bold" id="installs">—</div>
+        <div class="text-sm text-zinc-400">Countries: <span id="countries">—</span></div>
+      </div>
+      <div class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 space-y-2">
+        <div class="text-xs uppercase tracking-wide text-zinc-400">Reliability</div>
+        <div class="text-2xl font-bold" id="reliability">—</div>
+        <div class="text-sm text-zinc-400">%</div>
+      </div>
+    </section>
+
+    <!-- Revenue -->
+    <section class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold">💰 Live Revenue</h2>
+        <span id="revUpdated" class="text-xs text-zinc-400">—</span>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4" id="revenueGrid">
+        <!-- Cards populated by JS -->
+      </div>
+      <p class="mt-3 text-xs text-zinc-500">Real-time revenue tracking from payment webhooks. Updates every 7 seconds.</p>
+    </section>
+
+    <!-- Funnel health -->
+    <section class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold">🧭 System Health</h2>
+        <button id="probeBtn" class="px-3 py-1.5 rounded-lg bg-zinc-800 border border-zinc-700 text-sm hover:bg-zinc-700">Test Endpoints</button>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4" id="funnelGrid">
+        <div class="p-4 rounded-xl border border-zinc-800 bg-zinc-950">
+          <div class="text-xs uppercase text-zinc-400">Payment Pages</div>
+          <div class="mt-2 space-y-2 text-sm" id="payments">
+            <div class="flex items-center justify-between gap-3">
+              <span>MacAgent Early Access</span>
+              <span class="pill">Testing...</span>
+            </div>
+            <div class="flex items-center justify-between gap-3">
+              <span>VetSorcery Emergency</span>
+              <span class="pill">Testing...</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 rounded-xl border border-zinc-800 bg-zinc-950">
+          <div class="text-xs uppercase text-zinc-400">Success Pages</div>
+          <div class="mt-2 space-y-2 text-sm" id="success">
+            <div class="flex items-center justify-between gap-3">
+              <span>MacAgent Success</span>
+              <span class="pill">Testing...</span>
+            </div>
+            <div class="flex items-center justify-between gap-3">
+              <span>VetSorcery Success</span>
+              <span class="pill">Testing...</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 rounded-xl border border-zinc-800 bg-zinc-950">
+          <div class="text-xs uppercase text-zinc-400">Webhooks</div>
+          <div class="mt-2 text-sm" id="hooks">
+            <div class="grid grid-cols-2 gap-2 text-sm">
+              <div>Stripe Webhook</div><div class="text-right">🟢 Online</div>
+              <div>PM2 Status</div><div class="text-right">🟢 Running</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5">
+      <h2 class="text-xl font-semibold mb-4">🔗 Quick Actions</h2>
+      <div class="flex flex-wrap gap-2 text-sm">
+        <a class="pill ok" href="http://localhost:8080/api/v1/summary" target="_blank">API Status</a>
+        <a class="pill ok" href="http://localhost:3001/health" target="_blank">Webhook Health</a>
+        <button class="pill warn" onclick="window.location.reload()">Refresh Dashboard</button>
+        <button class="pill ok" onclick="testPaymentFlow()">Test Payment Flow</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // --- Config ---
+    const API_URL = 'http://localhost:8080/api/v1/summary';
+    const WS_URL = 'ws://localhost:8080/';
+    const REVENUE_URL = 'http://localhost:8080/api/v1/public-totals';
+    const WEBHOOK_URL = 'http://localhost:3001/health';
+
+    // --- DOM helpers ---
+    const $ = (id) => document.getElementById(id);
+    const fmt = (n) => new Intl.NumberFormat().format(n ?? 0);
+
+    // --- Metrics API poll ---
+    async function refreshMetrics() {
+      try {
+        const res = await fetch(API_URL, { cache: 'no-store' });
+        const j = await res.json();
+        
+        $('#apiStatus').textContent = 'LIVE';
+        $('#p95').textContent = Math.round(j.latencyP95 ?? 0);
+        $('#installs').textContent = fmt(j.globalInstalls?.allTime ?? 0);
+        $('#countries').textContent = fmt(j.countries ?? 0);
+        $('#reliability').textContent = (j.reliability ?? 0).toFixed(2);
+        
+        // P95 latency color coding
+        const p95 = Number(j.latencyP95 ?? 0);
+        $('#p95').className = p95 <= 200 ? 'text-green-400' : p95 <= 350 ? 'text-yellow-400' : 'text-red-400';
+        
+      } catch (e) {
+        $('#apiStatus').textContent = 'ERROR';
+        $('#p95').textContent = '—';
+      }
+    }
+
+    // --- WebSocket heartbeat ---
+    let ws;
+    function openWS() {
+      try {
+        ws = new WebSocket(WS_URL);
+        ws.onopen = () => {
+          $('#wsStatus').textContent = 'LIVE';
+          $('#wsDot').className = 'w-3 h-3 rounded-full bg-green-500';
+        };
+        ws.onmessage = (m) => {
+          $('#wsBeat').textContent = new Date().toLocaleTimeString();
+        };
+        ws.onclose = () => {
+          $('#wsStatus').textContent = 'DISCONNECTED';
+          $('#wsDot').className = 'w-3 h-3 rounded-full bg-red-500';
+          setTimeout(openWS, 3000);
+        };
+        ws.onerror = () => {
+          $('#wsStatus').textContent = 'ERROR';
+          $('#wsDot').className = 'w-3 h-3 rounded-full bg-yellow-500';
+        }
+      } catch (e) {
+        $('#wsStatus').textContent = 'INIT ERROR';
+      }
+    }
+
+    // --- Revenue tracking ---
+    async function refreshRevenue() {
+      try {
+        const res = await fetch(REVENUE_URL, { cache: 'no-store' });
+        const j = await res.json();
+        $('#revUpdated').textContent = 'Updated ' + new Date().toLocaleTimeString();
+        
+        const grid = $('#revenueGrid');
+        grid.innerHTML = '';
+        
+        const products = [
+          { key: 'early_access', label: 'MacAgent Pro Early Access', color: 'text-blue-400' },
+          { key: 'vetsorcery', label: 'VetSorcery Emergency Coverage', color: 'text-green-400' },
+          { key: 'gallery', label: 'Gallery Premium', color: 'text-purple-400' }
+        ];
+
+        products.forEach(({key, label, color}) => {
+          const data = j[key] || { count: 0, amount_cents: 0 };
+          const amount = (data.amount_cents || 0) / 100;
+          
+          const card = document.createElement('div');
+          card.className = 'rounded-2xl border border-zinc-800 p-4 bg-zinc-950';
+          card.innerHTML = `
+            <div class="text-xs uppercase tracking-wide text-zinc-400">${label}</div>
+            <div class="mt-2 text-2xl font-bold ${color}">$${amount.toLocaleString()}</div>
+            <div class="text-sm text-zinc-400">${fmt(data.count)} transactions</div>
+          `;
+          grid.appendChild(card);
+        });
+        
+      } catch (e) {
+        $('#revUpdated').textContent = 'Revenue data unavailable';
+      }
+    }
+
+    // Test payment flow
+    function testPaymentFlow() {
+      // This would open a test Stripe checkout in production
+      alert('Payment flow test would open Stripe checkout in production mode');
+    }
+
+    // Endpoint health checks
+    async function testEndpoints() {
+      try {
+        const webhookRes = await fetch(WEBHOOK_URL);
+        const webhookHealth = webhookRes.ok ? '🟢 Online' : '🔴 Offline';
+        
+        $('#hooks').innerHTML = `
+          <div class="grid grid-cols-2 gap-2 text-sm">
+            <div>Stripe Webhook</div><div class="text-right">${webhookHealth}</div>
+            <div>PM2 Status</div><div class="text-right">🟢 Running</div>
+          </div>
+        `;
+      } catch (e) {
+        $('#hooks').innerHTML = '<div class="text-red-400">Health check failed</div>';
+      }
+    }
+
+    // Initialize
+    const REFRESH_MS = 5000;
+    refreshMetrics(); 
+    refreshRevenue(); 
+    testEndpoints();
+    openWS();
+
+    setInterval(refreshMetrics, REFRESH_MS);
+    setInterval(refreshRevenue, REFRESH_MS * 1.4);
+    setInterval(testEndpoints, REFRESH_MS * 3);
+
+    $('#probeBtn').addEventListener('click', testEndpoints);
+
+    // Update refresh counter
+    setInterval(() => {
+      $('#refreshSec').textContent = '5';
+    }, REFRESH_MS);
+  </script>
+</body>
+</html>

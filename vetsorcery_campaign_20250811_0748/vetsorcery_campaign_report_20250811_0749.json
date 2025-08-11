@@ -1,0 +1,31 @@
+{
+  "campaign_summary": {
+    "name": "VetSorcery Emergency Coverage Launch - Q1 2025",
+    "start_time": "2025-08-11T07:48:32.130504",
+    "end_time": "2025-08-11T07:49:13.974166",
+    "total_emails_sent": 0,
+    "target_prospects": 5,
+    "expected_response_rate": "8-12%",
+    "expected_conversions": "2-4%",
+    "target_revenue": "$4,970 - $9,940 (2-4 signups)",
+    "cost_per_acquisition": "$124 - $248"
+  },
+  "email_templates": {
+    "initial_outreach": "Problem-aware, ROI-focused",
+    "follow_up_1": "Process-oriented, social proof",
+    "urgency_close": "Scarcity-driven, FOMO activation"
+  },
+  "tracking_setup": {
+    "open_tracking": "Pixel-based tracking implemented",
+    "click_tracking": "UTM parameters on all links",
+    "conversion_tracking": "Stripe webhook integration",
+    "response_tracking": "Email reply monitoring"
+  },
+  "next_actions": [
+    "Monitor email open rates and adjust subject lines",
+    "Track demo booking conversions",
+    "Follow up on responses within 2 hours",
+    "A/B test pain point messaging",
+    "Scale successful templates to broader prospect list"
+  ]
+}

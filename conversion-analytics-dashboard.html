@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacAgent Pro - Conversion Analytics Dashboard</title>
+    <style>
+        /* macOS-inspired design system */
+        :root {
+            --sf-pro: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+            --sf-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            --mac-blue: #007AFF;
+            --mac-green: #30D158;
+            --mac-orange: #FF9500;
+            --mac-red: #FF3B30;
+            --mac-purple: #AF52DE;
+            --mac-background: #FFFFFF;
+            --mac-secondary-background: #F2F2F7;
+            --mac-label: #000000;
+            --mac-secondary-label: #3C3C43;
+            --mac-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--sf-pro);
+            background: var(--mac-secondary-background);
+            color: var(--mac-label);
+            line-height: 1.47059;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            background: var(--mac-background);
+            padding: 32px 40px;
+            border-radius: 20px;
+            box-shadow: var(--mac-shadow);
+            margin-bottom: 32px;
+        }
+        
+        .header h1 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--mac-label) 0%, var(--mac-blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            color: var(--mac-secondary-label);
+            font-size: 18px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .metric-card {
+            background: var(--mac-background);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--mac-shadow);
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 48px;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            font-size: 16px;
+            color: var(--mac-secondary-label);
+            margin-bottom: 4px;
+        }
+        
+        .metric-change {
+            font-size: 14px;
+            font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        .change-positive {
+            background: rgba(48, 209, 88, 0.1);
+            color: var(--mac-green);
+        }
+        
+        .change-negative {
+            background: rgba(255, 59, 48, 0.1);
+            color: var(--mac-red);
+        }
+        
+        .funnel-section {
+            background: var(--mac-background);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--mac-shadow);
+            margin-bottom: 32px;
+        }
+        
+        .funnel-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .funnel-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .funnel-step {
+            flex: 1;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .step-number {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .step-label {
+            font-size: 14px;
+            color: var(--mac-secondary-label);
+            margin-bottom: 4px;
+        }
+        
+        .step-conversion {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .funnel-arrow {
+            font-size: 24px;
+            color: var(--mac-secondary-label);
+            margin: 0 8px;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+        }
+        
+        .insight-card {
+            background: var(--mac-background);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--mac-shadow);
+        }
+        
+        .insight-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .insight-list {
+            list-style: none;
+        }
+        
+        .insight-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .insight-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .insight-metric {
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .real-time {
+            color: var(--mac-green);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .chart-placeholder {
+            height: 200px;
+            background: var(--mac-secondary-background);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--mac-secondary-label);
+            font-size: 16px;
+            margin-top: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .funnel-steps {
+                flex-direction: column;
+            }
+            
+            .funnel-arrow {
+                transform: rotate(90deg);
+                margin: 16px 0;
+            }
+            
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Conversion Analytics Dashboard</h1>
+            <p>Real-time insights into web-to-native app conversion funnel</p>
+            <div class="real-time">● Live Data</div>
+        </div>
+        
+        <!-- Key Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value" style="color: var(--mac-blue);" id="total-visitors">1,247</div>
+                <div class="metric-label">Total Visitors</div>
+                <div class="metric-change change-positive" id="visitors-change">+12.5% vs yesterday</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-value" style="color: var(--mac-green);" id="chat-engagement">34.2%</div>
+                <div class="metric-label">Chat Engagement Rate</div>
+                <div class="metric-change change-positive" id="engagement-change">+5.8% vs yesterday</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-value" style="color: var(--mac-orange);" id="download-clicks">89</div>
+                <div class="metric-label">Download Clicks</div>
+                <div class="metric-change change-positive" id="downloads-change">+23% vs yesterday</div>
+            </div>
+            
+            <div class="metric-card">
+                <div class="metric-value" style="color: var(--mac-purple);" id="conversion-rate">7.1%</div>
+                <div class="metric-label">Web-to-Native Rate</div>
+                <div class="metric-change change-positive" id="conversion-change">+1.2% vs yesterday</div>
+            </div>
+        </div>
+        
+        <!-- Conversion Funnel -->
+        <div class="funnel-section">
+            <h2 class="funnel-title">Web-to-Native Conversion Funnel</h2>
+            
+            <div class="funnel-steps">
+                <div class="funnel-step">
+                    <div class="step-number" style="color: var(--mac-blue);" id="funnel-visitors">1,247</div>
+                    <div class="step-label">Landing Page Visitors</div>
+                    <div class="step-conversion">100%</div>
+                </div>
+                
+                <div class="funnel-arrow">→</div>
+                
+                <div class="funnel-step">
+                    <div class="step-number" style="color: var(--mac-green);" id="funnel-engaged">426</div>
+                    <div class="step-label">Chat Engaged</div>
+                    <div class="step-conversion" id="engagement-rate">34.2%</div>
+                </div>
+                
+                <div class="funnel-arrow">→</div>
+                
+                <div class="funnel-step">
+                    <div class="step-number" style="color: var(--mac-orange);" id="funnel-limit">152</div>
+                    <div class="step-label">Daily Limit Reached</div>
+                    <div class="step-conversion" id="limit-rate">12.2%</div>
+                </div>
+                
+                <div class="funnel-arrow">→</div>
+                
+                <div class="funnel-step">
+                    <div class="step-number" style="color: var(--mac-purple);" id="funnel-downloads">89</div>
+                    <div class="step-label">Download Clicked</div>
+                    <div class="step-conversion" id="download-rate">7.1%</div>
+                </div>
+            </div>
+            
+            <div class="chart-placeholder">
+                📊 Interactive funnel visualization (Chart.js integration ready)
+            </div>
+        </div>
+        
+        <!-- Insights Grid -->
+        <div class="insights-grid">
+            <!-- User Behavior Insights -->
+            <div class="insight-card">
+                <h3 class="insight-title">User Behavior Patterns</h3>
+                <ul class="insight-list">
+                    <li>
+                        <span>Average Chat Messages</span>
+                        <span class="insight-metric">4.7</span>
+                    </li>
+                    <li>
+                        <span>Time to First Message</span>
+                        <span class="insight-metric">23s</span>
+                    </li>
+                    <li>
+                        <span>Session Duration (Engaged)</span>
+                        <span class="insight-metric">3m 42s</span>
+                    </li>
+                    <li>
+                        <span>Features Explored (Avg)</span>
+                        <span class="insight-metric">2.3</span>
+                    </li>
+                    <li>
+                        <span>Mobile vs Desktop</span>
+                        <span class="insight-metric">23% / 77%</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Conversion Triggers -->
+            <div class="insight-card">
+                <h3 class="insight-title">Strongest Conversion Triggers</h3>
+                <ul class="insight-list">
+                    <li>
+                        <span>Daily limit reached</span>
+                        <span class="insight-metric" style="color: var(--mac-green);">58.5%</span>
+                    </li>
+                    <li>
+                        <span>Hardware consciousness demo</span>
+                        <span class="insight-metric" style="color: var(--mac-green);">42.1%</span>
+                    </li>
+                    <li>
+                        <span>Apple Support comparison</span>
+                        <span class="insight-metric" style="color: var(--mac-green);">38.9%</span>
+                    </li>
+                    <li>
+                        <span>Zero-conflict explanation</span>
+                        <span class="insight-metric" style="color: var(--mac-green);">35.2%</span>
+                    </li>
+                    <li>
+                        <span>5+ chat messages</span>
+                        <span class="insight-metric" style="color: var(--mac-green);">31.7%</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Problem Patterns -->
+            <div class="insight-card">
+                <h3 class="insight-title">Most Common Mac Problems</h3>
+                <ul class="insight-list">
+                    <li>
+                        <span>"Mac is slow"</span>
+                        <span class="insight-metric">28.4%</span>
+                    </li>
+                    <li>
+                        <span>"Storage full"</span>
+                        <span class="insight-metric">19.7%</span>
+                    </li>
+                    <li>
+                        <span>"Mac overheating"</span>
+                        <span class="insight-metric">15.2%</span>
+                    </li>
+                    <li>
+                        <span>"WiFi problems"</span>
+                        <span class="insight-metric">12.8%</span>
+                    </li>
+                    <li>
+                        <span>"App crashing"</span>
+                        <span class="insight-metric">11.3%</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Upgrade Barriers -->
+            <div class="insight-card">
+                <h3 class="insight-title">Conversion Barriers</h3>
+                <ul class="insight-list">
+                    <li>
+                        <span>Price concern</span>
+                        <span class="insight-metric" style="color: var(--mac-red);">23.1%</span>
+                    </li>
+                    <li>
+                        <span>Installation friction</span>
+                        <span class="insight-metric" style="color: var(--mac-red);">18.5%</span>
+                    </li>
+                    <li>
+                        <span>Feature uncertainty</span>
+                        <span class="insight-metric" style="color: var(--mac-red);">15.9%</span>
+                    </li>
+                    <li>
+                        <span>Trust/security concern</span>
+                        <span class="insight-metric" style="color: var(--mac-red);">12.4%</span>
+                    </li>
+                    <li>
+                        <span>Satisfied with web version</span>
+                        <span class="insight-metric" style="color: var(--mac-red);">9.8%</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Real-time Activity -->
+            <div class="insight-card">
+                <h3 class="insight-title">Real-time Activity</h3>
+                <ul class="insight-list" id="real-time-activity">
+                    <li>
+                        <span>Active sessions</span>
+                        <span class="insight-metric" style="color: var(--mac-green);">12</span>
+                    </li>
+                    <li>
+                        <span>Messages last hour</span>
+                        <span class="insight-metric">47</span>
+                    </li>
+                    <li>
+                        <span>Downloads last hour</span>
+                        <span class="insight-metric" style="color: var(--mac-blue);">3</span>
+                    </li>
+                    <li>
+                        <span>Top problem now</span>
+                        <span class="insight-metric">"Mac is slow"</span>
+                    </li>
+                </ul>
+                <div id="recent-events" style="margin-top: 16px; font-size: 14px; color: var(--mac-secondary-label);">
+                    <div>🟢 User asked about overheating (2m ago)</div>
+                    <div>🔵 Download clicked from hero section (4m ago)</div>
+                    <div>🟡 Daily limit reached by user (6m ago)</div>
+                </div>
+            </div>
+            
+            <!-- Optimization Recommendations -->
+            <div class="insight-card">
+                <h3 class="insight-title">Optimization Recommendations</h3>
+                <ul class="insight-list">
+                    <li style="align-items: flex-start;">
+                        <div>
+                            <strong style="color: var(--mac-green);">High Impact:</strong><br>
+                            <span style="font-size: 14px;">Add "Mac overheating" to suggestion chips - 15.2% of queries but not prominently featured</span>
+                        </div>
+                    </li>
+                    <li style="align-items: flex-start;">
+                        <div>
+                            <strong style="color: var(--mac-orange);">Medium Impact:</strong><br>
+                            <span style="font-size: 14px;">Reduce daily limit from 10 to 7 messages to increase conversion urgency</span>
+                        </div>
+                    </li>
+                    <li style="align-items: flex-start;">
+                        <div>
+                            <strong style="color: var(--mac-blue);">Test:</strong><br>
+                            <span style="font-size: 14px;">A/B test pricing display - emphasize $10/month vs $100/year annually</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simulated real-time data updates
+        function updateMetrics() {
+            // Simulate metric fluctuations
+            const visitors = 1247 + Math.floor(Math.random() * 50) - 25;
+            const engagementRate = (34.2 + (Math.random() * 2 - 1)).toFixed(1);
+            const downloads = 89 + Math.floor(Math.random() * 10) - 5;
+            const conversionRate = (7.1 + (Math.random() * 0.4 - 0.2)).toFixed(1);
+            
+            document.getElementById('total-visitors').textContent = visitors.toLocaleString();
+            document.getElementById('chat-engagement').textContent = engagementRate + '%';
+            document.getElementById('download-clicks').textContent = downloads;
+            document.getElementById('conversion-rate').textContent = conversionRate + '%';
+            
+            // Update funnel
+            const engaged = Math.floor(visitors * (engagementRate / 100));
+            const limitReached = Math.floor(visitors * 0.122);
+            
+            document.getElementById('funnel-visitors').textContent = visitors.toLocaleString();
+            document.getElementById('funnel-engaged').textContent = engaged;
+            document.getElementById('funnel-limit').textContent = limitReached;
+            document.getElementById('funnel-downloads').textContent = downloads;
+            
+            document.getElementById('engagement-rate').textContent = engagementRate + '%';
+            document.getElementById('limit-rate').textContent = ((limitReached / visitors) * 100).toFixed(1) + '%';
+            document.getElementById('download-rate').textContent = conversionRate + '%';
+        }
+        
+        // Update real-time activity
+        function updateRealTimeActivity() {
+            const activities = [
+                '🟢 User asked about "my mac is slow"',
+                '🔵 Download clicked from feature comparison',
+                '🟡 Daily limit reached by returning user',
+                '🟠 Hardware consciousness demo viewed',
+                '🟣 Advanced plan features explored',
+                '⚪ Apple Support comparison triggered',
+                '🔴 User reported conversion barrier: price'
+            ];
+            
+            const recentEvents = document.getElementById('recent-events');
+            if (recentEvents) {\n                const randomActivity = activities[Math.floor(Math.random() * activities.length)];\n                const timeAgo = Math.floor(Math.random() * 10) + 1;\n                \n                const newEvent = document.createElement('div');\n                newEvent.textContent = `${randomActivity} (${timeAgo}m ago)`;\n                \n                recentEvents.insertBefore(newEvent, recentEvents.firstChild);\n                \n                // Keep only last 3 events\n                while (recentEvents.children.length > 3) {\n                    recentEvents.removeChild(recentEvents.lastChild);\n                }\n            }\n        }\n        \n        // Initialize and start updates\n        updateMetrics();\n        updateRealTimeActivity();\n        \n        // Update metrics every 15 seconds\n        setInterval(updateMetrics, 15000);\n        \n        // Update real-time activity every 30 seconds\n        setInterval(updateRealTimeActivity, 30000);\n        \n        // Add subtle animations\n        document.addEventListener('DOMContentLoaded', () => {\n            const cards = document.querySelectorAll('.metric-card, .insight-card');\n            cards.forEach((card, index) => {\n                card.style.opacity = '0';\n                card.style.transform = 'translateY(20px)';\n                card.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';\n                \n                setTimeout(() => {\n                    card.style.opacity = '1';\n                    card.style.transform = 'translateY(0)';\n                }, index * 100);\n            });\n        });\n    </script>\n</body>\n</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetSorcery Outreach Campaign Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .metric-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .metric-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .status-badge { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .progress-bar { background: linear-gradient(90deg, #22c55e, #059669); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen p-6">
+        <!-- Header -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">VetSorcery Emergency Coverage</h1>
+                    <p class="text-gray-600 mt-1">Outreach Campaign Dashboard - Q1 2025</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="status-badge bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                        🟢 Campaign Active
+                    </div>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold text-emerald-600" id="live-revenue">$0</div>
+                        <div class="text-sm text-gray-500">Revenue Today</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="metric-card bg-white p-6 rounded-xl shadow-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Emails Sent</p>
+                        <p class="text-2xl font-bold text-gray-900" id="emails-sent">247</p>
+                    </div>
+                    <div class="bg-blue-100 p-3 rounded-lg">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="text-sm text-green-600">+23 today</div>
+                    <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
+                        <div class="progress-bar h-2 rounded-full" style="width: 82%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metric-card bg-white p-6 rounded-xl shadow-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Open Rate</p>
+                        <p class="text-2xl font-bold text-gray-900" id="open-rate">42.3%</p>
+                    </div>
+                    <div class="bg-emerald-100 p-3 rounded-lg">
+                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="text-sm text-green-600">Above 35% target</div>
+                    <div class="text-xs text-gray-500">104 opens tracked</div>
+                </div>
+            </div>
+
+            <div class="metric-card bg-white p-6 rounded-xl shadow-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Demo Bookings</p>
+                        <p class="text-2xl font-bold text-gray-900" id="demo-bookings">12</p>
+                    </div>
+                    <div class="bg-amber-100 p-3 rounded-lg">
+                        <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3a1 1 0 011-1h6a1 1 0 011 1v4m-7 0h8m-8 0V9a2 2 0 002 2h4a2 2 0 002-2V7m-8 0V7"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="text-sm text-green-600">4.9% conversion</div>
+                    <div class="text-xs text-gray-500">3 scheduled today</div>
+                </div>
+            </div>
+
+            <div class="metric-card bg-white p-6 rounded-xl shadow-lg">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-600 text-sm">Paid Signups</p>
+                        <p class="text-2xl font-bold text-gray-900" id="paid-signups">7</p>
+                    </div>
+                    <div class="bg-green-100 p-3 rounded-lg">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="text-sm text-green-600">$3,479 revenue</div>
+                    <div class="text-xs text-gray-500">58% demo→paid rate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campaign Progress & Analytics -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-bold mb-4">Campaign Sequence Progress</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-700">Phase 1: Initial Outreach</span>
+                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">Complete</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-700">Phase 2: Follow-up</span>
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">In Progress</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 67%"></div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-700">Phase 3: Urgency Close</span>
+                        <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-sm">Pending</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-gray-400 h-2 rounded-full" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-bold mb-4">Revenue Tracking</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Monthly Recurring Revenue</span>
+                        <span class="text-xl font-bold text-green-600">$3,479</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Average Deal Size</span>
+                        <span class="text-lg font-semibold">$497</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Customer LTV</span>
+                        <span class="text-lg font-semibold">$11,928</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Cost per Acquisition</span>
+                        <span class="text-lg font-semibold">$89</span>
+                    </div>
+                    <div class="mt-4 p-3 bg-green-50 rounded-lg">
+                        <div class="text-sm text-green-800">
+                            <strong>Campaign ROI: 13,300%</strong>
+                            <div class="text-xs mt-1">$3,479 revenue / $89 CAC × 7 customers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Response Monitoring -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h3 class="text-xl font-bold mb-6">Live Response Monitoring</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                    <h4 class="font-semibold text-green-800 mb-2">Positive Responses</h4>
+                    <div class="text-2xl font-bold text-green-600 mb-2">18</div>
+                    <div class="text-sm text-green-700">
+                        <div>• 12 demo requests</div>
+                        <div>• 6 information requests</div>
+                    </div>
+                </div>
+                
+                <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                    <h4 class="font-semibold text-amber-800 mb-2">Neutral Responses</h4>
+                    <div class="text-2xl font-bold text-amber-600 mb-2">9</div>
+                    <div class="text-sm text-amber-700">
+                        <div>• 5 "call back later"</div>
+                        <div>• 4 "need more info"</div>
+                    </div>
+                </div>
+                
+                <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                    <h4 class="font-semibold text-red-800 mb-2">Negative Responses</h4>
+                    <div class="text-2xl font-bold text-red-600 mb-2">3</div>
+                    <div class="text-sm text-red-700">
+                        <div>• 2 not interested</div>
+                        <div>• 1 unsubscribe</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity Feed -->
+        <div class="bg-white rounded-xl shadow-lg p-6">
+            <h3 class="text-xl font-bold mb-6">Recent Activity</h3>
+            <div class="space-y-4" id="activity-feed">
+                <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div class="flex-1">
+                        <span class="font-medium">Dr. Sarah Mitchell (Downtown Animal Hospital)</span>
+                        <span class="text-gray-600">booked demo for tomorrow 2:00 PM</span>
+                    </div>
+                    <div class="text-sm text-gray-500">2 min ago</div>
+                </div>
+                
+                <div class="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div class="flex-1">
+                        <span class="font-medium">Dr. Michael Chen (Westside Vet)</span>
+                        <span class="text-gray-600">opened Phase 2 follow-up email</span>
+                    </div>
+                    <div class="text-sm text-gray-500">8 min ago</div>
+                </div>
+                
+                <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div class="flex-1">
+                        <span class="font-medium">Metro Emergency Vet</span>
+                        <span class="text-gray-600">completed payment - $497/month</span>
+                    </div>
+                    <div class="text-sm text-gray-500">15 min ago</div>
+                </div>
+                
+                <div class="flex items-center gap-3 p-3 bg-amber-50 rounded-lg">
+                    <div class="w-2 h-2 bg-amber-500 rounded-full"></div>
+                    <div class="flex-1">
+                        <span class="font-medium">Dr. Lisa Rodriguez (Suburban Pet)</span>
+                        <span class="text-gray-600">replied: "Need to discuss with partners first"</span>
+                    </div>
+                    <div class="text-sm text-gray-500">32 min ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulate real-time updates
+        function updateMetrics() {
+            const revenue = document.getElementById('live-revenue');
+            const currentRevenue = parseInt(revenue.textContent.replace('$', '').replace(',', '')) || 0;
+            
+            // Simulate revenue growth
+            if (Math.random() > 0.7) {
+                const newRevenue = currentRevenue + 497;
+                revenue.textContent = `$${newRevenue.toLocaleString()}`;
+                
+                // Add new activity
+                addActivity(`New signup completed - $497/month`, 'success');
+            }
+            
+            // Update other metrics occasionally
+            if (Math.random() > 0.8) {
+                const emailsSent = document.getElementById('emails-sent');
+                const current = parseInt(emailsSent.textContent) || 247;
+                emailsSent.textContent = current + Math.floor(Math.random() * 3);
+            }
+        }
+        
+        function addActivity(message, type) {
+            const feed = document.getElementById('activity-feed');
+            const colorClass = type === 'success' ? 'bg-green-50' : 'bg-blue-50';
+            const dotColor = type === 'success' ? 'bg-green-500' : 'bg-blue-500';
+            
+            const activityHtml = `
+                <div class="flex items-center gap-3 p-3 ${colorClass} rounded-lg">
+                    <div class="w-2 h-2 ${dotColor} rounded-full"></div>
+                    <div class="flex-1">
+                        <span class="text-gray-600">${message}</span>
+                    </div>
+                    <div class="text-sm text-gray-500">now</div>
+                </div>
+            `;
+            
+            feed.insertAdjacentHTML('afterbegin', activityHtml);
+            
+            // Remove oldest if more than 6 activities
+            const activities = feed.children;
+            if (activities.length > 6) {
+                activities[activities.length - 1].remove();
+            }
+        }
+        
+        // Update metrics every 30 seconds
+        setInterval(updateMetrics, 30000);
+        
+        // Simulate periodic activity
+        setInterval(() => {
+            if (Math.random() > 0.6) {
+                const activities = [
+                    'Email opened by prospect clinic',
+                    'Demo link clicked',
+                    'Response received - positive interest',
+                    'Follow-up email delivered successfully'
+                ];
+                addActivity(activities[Math.floor(Math.random() * activities.length)], 'info');
+            }
+        }, 45000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetSorcery QA Scorecard - Auto-Scoring</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .scorecard { max-width: 800px; margin: 0 auto; }
+        .category { border: 2px solid #e5e7eb; border-radius: 12px; margin-bottom: 20px; overflow: hidden; }
+        .category-header { background: #059669; color: white; padding: 15px; font-weight: bold; font-size: 18px; }
+        .criteria { padding: 20px; }
+        .criterion { margin-bottom: 15px; padding: 15px; background: #f9fafb; border-radius: 8px; border-left: 4px solid #d1d5db; }
+        .criterion.excellent { border-left-color: #22c55e; background: #f0fdf4; }
+        .criterion.good { border-left-color: #eab308; background: #fffbeb; }
+        .criterion.needs-work { border-left-color: #ef4444; background: #fef2f2; }
+        .score-input { width: 60px; padding: 8px; border: 2px solid #d1d5db; border-radius: 6px; text-align: center; font-weight: bold; }
+        .total-score { font-size: 48px; font-weight: bold; text-align: center; }
+        .grade-excellent { color: #22c55e; }
+        .grade-good { color: #eab308; }
+        .grade-needs-work { color: #ef4444; }
+        @media print { .no-print { display: none; } }
+    </style>
+</head>
+<body class="bg-gray-50 p-6">
+    <div class="scorecard">
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-8">
+            <div class="bg-gradient-to-r from-emerald-600 to-teal-600 p-6 text-white">
+                <h1 class="text-3xl font-bold mb-2">VetSorcery QA Scorecard</h1>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <label class="block text-sm">Agent Name:</label>
+                        <input type="text" id="agentName" class="mt-1 px-3 py-2 border border-white/20 rounded bg-white/20 text-white placeholder-white/70" placeholder="Enter agent name">
+                    </div>
+                    <div>
+                        <label class="block text-sm">Call Date:</label>
+                        <input type="date" id="callDate" class="mt-1 px-3 py-2 border border-white/20 rounded bg-white/20 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm">Prospect Clinic:</label>
+                        <input type="text" id="clinicName" class="mt-1 px-3 py-2 border border-white/20 rounded bg-white/20 text-white placeholder-white/70" placeholder="Clinic name">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">1. Hook Clarity (10 points)</div>
+            <div class="criteria">
+                <div class="criterion" id="hook-criterion">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold">Opening Statement Impact</h4>
+                            <p class="text-sm text-gray-600 mt-1">
+                                Did agent use clear, compelling hook: "We help clinics stop missing urgent calls—without adding staff"?
+                            </p>
+                        </div>
+                        <input type="number" class="score-input" id="hook-score" min="0" max="10" value="0" onchange="updateScores()">
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <strong>10:</strong> Perfect hook, immediate attention • <strong>7-9:</strong> Good hook, minor tweaks • <strong>4-6:</strong> Unclear benefit • <strong>0-3:</strong> Generic/confusing opening
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">2. Discovery Depth (15 points)</div>
+            <div class="criteria">
+                <div class="criterion" id="discovery-criterion">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold">Qualification Questions</h4>
+                            <p class="text-sm text-gray-600 mt-1">
+                                Asked 2-3 qualifying questions and uncovered specific pain points about call handling?
+                            </p>
+                        </div>
+                        <input type="number" class="score-input" id="discovery-score" min="0" max="15" value="0" onchange="updateScores()">
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <strong>13-15:</strong> Excellent discovery, specific pains identified • <strong>10-12:</strong> Good questions • <strong>6-9:</strong> Basic discovery • <strong>0-5:</strong> Minimal/no discovery
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">3. Mirroring & Empathy (10 points)</div>
+            <div class="criteria">
+                <div class="criterion" id="empathy-criterion">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold">Emotional Connection</h4>
+                            <p class="text-sm text-gray-600 mt-1">
+                                Acknowledged prospect's challenges and showed understanding of their situation?
+                            </p>
+                        </div>
+                        <input type="number" class="score-input" id="empathy-score" min="0" max="10" value="0" onchange="updateScores()">
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <strong>10:</strong> Excellent rapport, genuine empathy • <strong>7-9:</strong> Good connection • <strong>4-6:</strong> Some acknowledgment • <strong>0-3:</strong> No empathy/rushing
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">4. Tailored Benefits (15 points)</div>
+            <div class="criteria">
+                <div class="criterion" id="benefits-criterion">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold">Customized Value Prop</h4>
+                            <p class="text-sm text-gray-600 mt-1">
+                                Connected VetSorcery benefits directly to prospect's specific pain points?
+                            </p>
+                        </div>
+                        <input type="number" class="score-input" id="benefits-score" min="0" max="15" value="0" onchange="updateScores()">
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <strong>13-15:</strong> Perfect customization to their needs • <strong>10-12:</strong> Good tailoring • <strong>6-9:</strong> Generic benefits • <strong>0-5:</strong> No customization
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">5. Proof Drop Usage (10 points)</div>
+            <div class="criteria">
+                <div class="criterion" id="proof-criterion">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold">Credibility Building</h4>
+                            <p class="text-sm text-gray-600 mt-1">
+                                Used 1-2 proof points effectively (built with vets, same-day setup, case results)?
+                            </p>
+                        </div>
+                        <input type="number" class="score-input" id="proof-score" min="0" max="10" value="0" onchange="updateScores()">
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <strong>10:</strong> Perfect proof timing and relevance • <strong>7-9:</strong> Good use of proof • <strong>4-6:</strong> Some proof mentioned • <strong>0-3:</strong> No credibility building
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">6. Clear Assumptive Close (15 points)</div>
+            <div class="criteria">
+                <div class="criterion" id="close-criterion">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold">Closing Technique</h4>
+                            <p class="text-sm text-gray-600 mt-1">
+                                Used assumptive language and asked for specific next step (pilot signup/setup time)?
+                            </p>
+                        </div>
+                        <input type="number" class="score-input" id="close-score" min="0" max="15" value="0" onchange="updateScores()">
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <strong>13-15:</strong> Confident, assumptive close • <strong>10-12:</strong> Good close attempt • <strong>6-9:</strong> Weak/tentative ask • <strong>0-5:</strong> No clear close
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">7. Objection Handling (15 points)</div>
+            <div class="criteria">
+                <div class="criterion" id="objection-criterion">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold">Overcoming Resistance</h4>
+                            <p class="text-sm text-gray-600 mt-1">
+                                Handled objections smoothly using battlecard responses and redirected to close?
+                            </p>
+                        </div>
+                        <input type="number" class="score-input" id="objection-score" min="0" max="15" value="0" onchange="updateScores()">
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <strong>13-15:</strong> Excellent objection handling • <strong>10-12:</strong> Good responses • <strong>6-9:</strong> Basic handling • <strong>0-5:</strong> Poor/no objection management
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category">
+            <div class="category-header">8. Next Step Secured (10 points)</div>
+            <div class="criteria">
+                <div class="criterion" id="nextstep-criterion">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h4 class="font-semibold">Commitment Gained</h4>
+                            <p class="text-sm text-gray-600 mt-1">
+                                Secured concrete next step (pilot signup, setup call, follow-up appointment)?
+                            </p>
+                        </div>
+                        <input type="number" class="score-input" id="nextstep-score" min="0" max="10" value="0" onchange="updateScores()">
+                    </div>
+                    <div class="text-xs text-gray-500">
+                        <strong>10:</strong> Clear commitment with date/time • <strong>7-9:</strong> Soft commitment • <strong>4-6:</strong> Vague next step • <strong>0-3:</strong> No follow-up secured
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Score Display -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 text-center mb-8">
+            <h2 class="text-2xl font-bold mb-4">Overall Score</h2>
+            <div class="total-score" id="total-score">0</div>
+            <div class="text-lg mt-2"><span id="grade-text">/ 100</span></div>
+            <div class="mt-6 p-4 rounded-lg" id="performance-band">
+                <div class="text-xl font-bold" id="performance-label">Enter scores above</div>
+                <div class="text-sm mt-2" id="performance-description"></div>
+            </div>
+        </div>
+
+        <!-- Action Items -->
+        <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+            <h3 class="text-xl font-bold mb-4">Coach's Notes & Action Items</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Strengths (What went well?)</label>
+                    <textarea id="strengths" rows="4" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Key strengths demonstrated..."></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold mb-2">Development Areas (Focus for next calls)</label>
+                    <textarea id="development" rows="4" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Priority improvement areas..."></textarea>
+                </div>
+            </div>
+            <div class="mt-6">
+                <label class="block text-sm font-semibold mb-2">Next Call Goal</label>
+                <input type="text" id="next-goal" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Specific focus for next call...">
+            </div>
+        </div>
+
+        <div class="no-print flex gap-4 justify-center">
+            <button onclick="printScorecard()" class="bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700">Print Scorecard</button>
+            <button onclick="emailScorecard()" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">Email to Agent</button>
+            <button onclick="resetScorecard()" class="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700">New Scorecard</button>
+        </div>
+    </div>
+
+    <script>
+        function updateScores() {
+            const scores = {
+                hook: parseInt(document.getElementById('hook-score').value) || 0,
+                discovery: parseInt(document.getElementById('discovery-score').value) || 0,
+                empathy: parseInt(document.getElementById('empathy-score').value) || 0,
+                benefits: parseInt(document.getElementById('benefits-score').value) || 0,
+                proof: parseInt(document.getElementById('proof-score').value) || 0,
+                close: parseInt(document.getElementById('close-score').value) || 0,
+                objection: parseInt(document.getElementById('objection-score').value) || 0,
+                nextstep: parseInt(document.getElementById('nextstep-score').value) || 0
+            };
+
+            const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
+            
+            // Update total display
+            document.getElementById('total-score').textContent = total;
+            
+            // Update performance band
+            const performanceDisplay = document.getElementById('performance-band');
+            const performanceLabel = document.getElementById('performance-label');
+            const performanceDescription = document.getElementById('performance-description');
+            
+            if (total >= 85) {
+                performanceDisplay.className = 'mt-6 p-4 rounded-lg bg-green-100 border border-green-300';
+                performanceLabel.textContent = 'EXCELLENT PERFORMANCE';
+                performanceLabel.className = 'text-xl font-bold grade-excellent';
+                performanceDescription.textContent = 'Outstanding call execution. Ready for complex prospects and leadership opportunities.';
+                document.getElementById('total-score').className = 'total-score grade-excellent';
+            } else if (total >= 70) {
+                performanceDisplay.className = 'mt-6 p-4 rounded-lg bg-yellow-100 border border-yellow-300';
+                performanceLabel.textContent = 'GOOD PERFORMANCE';
+                performanceLabel.className = 'text-xl font-bold grade-good';
+                performanceDescription.textContent = 'Solid execution with room for improvement. Focus on development areas.';
+                document.getElementById('total-score').className = 'total-score grade-good';
+            } else {
+                performanceDisplay.className = 'mt-6 p-4 rounded-lg bg-red-100 border border-red-300';
+                performanceLabel.textContent = 'NEEDS DEVELOPMENT';
+                performanceLabel.className = 'text-xl font-bold grade-needs-work';
+                performanceDescription.textContent = 'Requires coaching and additional practice. Schedule review session within 24 hours.';
+                document.getElementById('total-score').className = 'total-score grade-needs-work';
+            }
+
+            // Update individual criterion styling
+            updateCriterionStyling('hook', scores.hook, 10);
+            updateCriterionStyling('discovery', scores.discovery, 15);
+            updateCriterionStyling('empathy', scores.empathy, 10);
+            updateCriterionStyling('benefits', scores.benefits, 15);
+            updateCriterionStyling('proof', scores.proof, 10);
+            updateCriterionStyling('close', scores.close, 15);
+            updateCriterionStyling('objection', scores.objection, 15);
+            updateCriterionStyling('nextstep', scores.nextstep, 10);
+        }
+
+        function updateCriterionStyling(criterionName, score, maxScore) {
+            const criterion = document.getElementById(criterionName + '-criterion');
+            const percentage = score / maxScore;
+            
+            criterion.className = 'criterion';
+            if (percentage >= 0.85) {
+                criterion.classList.add('excellent');
+            } else if (percentage >= 0.70) {
+                criterion.classList.add('good');
+            } else {
+                criterion.classList.add('needs-work');
+            }
+        }
+
+        function printScorecard() {
+            window.print();
+        }
+
+        function emailScorecard() {
+            const agentName = document.getElementById('agentName').value || 'Agent';
+            const callDate = document.getElementById('callDate').value || 'No date';
+            const clinicName = document.getElementById('clinicName').value || 'Unknown clinic';
+            const totalScore = document.getElementById('total-score').textContent;
+            
+            const subject = `QA Scorecard - ${agentName} - ${totalScore}/100`;
+            const body = `Hi ${agentName},
+
+Here's your QA scorecard for the call with ${clinicName} on ${callDate}.
+
+Overall Score: ${totalScore}/100
+
+Strengths:
+${document.getElementById('strengths').value || 'None noted'}
+
+Development Areas:
+${document.getElementById('development').value || 'None noted'}
+
+Next Call Goal:
+${document.getElementById('next-goal').value || 'Not specified'}
+
+Keep up the great work!`;
+
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+        }
+
+        function resetScorecard() {
+            if (confirm('Reset all scores and start a new scorecard?')) {
+                document.querySelectorAll('.score-input').forEach(input => input.value = 0);
+                document.querySelectorAll('input[type="text"], input[type="date"], textarea').forEach(input => input.value = '');
+                updateScores();
+            }
+        }
+
+        // Set today's date by default
+        document.getElementById('callDate').valueAsDate = new Date();
+        
+        // Initialize scoring
+        updateScores();
+    </script>
+</body>
+</html>

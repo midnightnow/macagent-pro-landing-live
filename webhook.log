@@ -1,0 +1,7 @@
+🔔 MacAgent Pro Webhook Server running on port 3001
+📊 Health check: http://localhost:3001/health
+🧪 Test endpoint: http://localhost:3001/test
+   discord: ✅ enabled
+   slack: ✅ enabled
+   teams: ✅ enabled
+   zapier: ✅ enabled

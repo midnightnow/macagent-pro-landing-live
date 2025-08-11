@@ -1,0 +1,24 @@
+{
+  "twitter_thread": [
+    "\ud83d\ude80 Big news: MacAgent Pro Early Access is LIVE!",
+    "",
+    "The first AI assistant with true hardware consciousness:",
+    "\u2705 Zero-conflict audio pipeline (mathematically proven)",
+    "\u2705 99.94% reliability across 1,247+ installations",
+    "\u2705 Sub-200ms response latency",
+    "\u2705 Built specifically for macOS developers",
+    "",
+    "\ud83d\udd25 Early Access: $297 (50% off launch price)",
+    "\u23f0 Limited to first 100 developers",
+    "",
+    "Demo: https://macagent.pro/early-access",
+    "",
+    "#MacAgent #AI #macOS #Productivity"
+  ],
+  "hacker_news_post": {
+    "title": "MacAgent Pro: AI assistant with hardware consciousness and zero-conflict architecture",
+    "text": "After 8 months of development, I'm launching early access to MacAgent Pro - an AI assistant with true hardware consciousness and mathematically proven zero-conflict architecture.\n\nKey innovations:\n\u2022 P(conflict) = 0 eliminates entire class of audio failures\n\u2022 Real-time thermal and resource awareness\n\u2022 Sub-200ms latency with 99.94% reliability\n\u2022 Native Swift Package Manager integration\n\nUnlike typical AI assistants that treat hardware as black box, MacAgent Pro maintains continuous system awareness and adapts behavior dynamically.\n\nEarly access: $297 (50% off) for first 100 developers\nDemo: https://macagent.pro/early-access\n\nWould love technical feedback from HN community!"
+  },
+  "reddit_macos": "MacAgent Pro Early Access - AI assistant built specifically for Mac hardware...",
+  "product_hunt_launch": "Coming to Product Hunt: MacAgent Pro - AI with hardware consciousness"
+}

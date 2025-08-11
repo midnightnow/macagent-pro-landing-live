@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>MacAgent Pro</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.macagent.pro</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>MacAgent Pro</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.12</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2025 MacAgent Pro. All rights reserved.</string>
+	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
+	
+	<!-- Privacy Usage Descriptions -->
+	<key>NSSystemAdministrationUsageDescription</key>
+	<string>MacAgent Pro needs administrator privileges to access hardware sensors and provide deep system analysis.</string>
+	
+	<!-- Permission descriptions for macOS security -->
+	<key>NSAppleEventsUsageDescription</key>
+	<string>MacAgent Pro uses Apple Events to automate system maintenance tasks and provide intelligent assistance.</string>
+	
+	<key>NSDesktopFolderUsageDescription</key>
+	<string>MacAgent Pro analyzes your Desktop for large files and optimization opportunities.</string>
+	
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>MacAgent Pro analyzes your Documents folder to identify large files and suggest cleanup options.</string>
+	
+	<key>NSDownloadsFolderUsageDescription</key>
+	<string>MacAgent Pro analyzes your Downloads folder to identify large files and optimization opportunities.</string>
+	
+	<!-- Required for Full Disk Access -->
+	<key>NSFileProviderPresenceUsageDescription</key>
+	<string>MacAgent Pro requires full disk access to provide comprehensive system analysis and hardware monitoring.</string>
+	
+	<!-- High Sierra compatibility -->
+	<key>NSSupportsAutomaticTermination</key>
+	<false/>
+	
+	<key>NSSuddenTerminationDisabled</key>
+	<true/>
+	
+	<!-- Background execution -->
+	<key>LSBackgroundOnly</key>
+	<false/>
+	
+	<!-- Document types (none for utility app) -->
+	<key>CFBundleDocumentTypes</key>
+	<array/>
+	
+	<!-- URL schemes (none needed) -->
+	<key>CFBundleURLTypes</key>
+	<array/>
+	
+	<!-- Application transport security -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+	</dict>
+	
+	<!-- Capabilities -->
+	<key>com.apple.security.automation.apple-events</key>
+	<true/>
+	
+	<!-- Hardware access requirements -->
+	<key>LSRequiresNativeExecution</key>
+	<true/>
+	
+	<!-- Main nib file (none - programmatic UI) -->
+	<key>NSMainNibFile</key>
+	<string></string>
+	
+	<!-- Principal class -->
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	
+	<!-- Services (none provided) -->
+	<key>NSServices</key>
+	<array/>
+	
+	<!-- Supported platforms -->
+	<key>LSRequiresNativeExecution</key>
+	<true/>
+	
+	<!-- Additional metadata for App Store if needed -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+</dict>
+</plist>
