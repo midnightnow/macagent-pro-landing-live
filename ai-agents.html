@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agents - Your Personal AI Assistant | MacAgent Pro</title>
+    <meta name="description" content="Talk to AI, solve problems, translate text, and get things done. MacAgent Pro's AI agents are like having an advanced Siri or virtual assistant that actually works.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mac-blue': '#007AFF',
+                        'mac-gray': '#8E8E93', 
+                        'mac-green': '#30D158',
+                        'mac-red': '#FF3B30',
+                        'mac-orange': '#FF9500'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in-out'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .hardware-glow {
+            background: linear-gradient(45deg, #007AFF, #30D158, #FF9500);
+            background-size: 300% 300%;
+            animation: hardwareGlow 3s ease infinite;
+        }
+        
+        @keyframes hardwareGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .feature-card { transition: all 0.3s; border-left: 4px solid #4f46e5; }
+        .feature-card:hover { transform: translateX(4px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .metric-card { background: linear-gradient(135deg, #1e293b, #334155); }
+        .tech-highlight { background: linear-gradient(90deg, #f59e0b, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .terminal-glow { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Hero Section -->
+    <div class="min-h-screen bg-gradient-to-b from-purple-900 via-purple-800 to-purple-700 text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 pt-16">
+            <!-- Navigation -->
+            <nav class="flex justify-between items-center mb-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 hardware-glow rounded-lg"></div>
+                    <span class="text-xl font-bold">MacAgent Pro</span>
+                    <span class="text-sm bg-green-500 px-2 py-1 rounded text-white">AI Agents</span>
+                </div>
+                <div class="space-x-6">
+                    <a href="index.html" class="hover:text-purple-200">Home</a>
+                    <a href="ai-agents.html" class="text-purple-200 font-semibold">AI Agents</a>
+                    <a href="mac-optimization.html" class="hover:text-purple-200">Mac</a>
+                    <a href="genius-assistant.html" class="hover:text-purple-200">Genius</a>
+                    <a href="pricing.html" class="hover:text-purple-200">Pricing</a>
+                    <a href="index.html#download" class="bg-white text-purple-900 px-6 py-2 rounded-lg font-medium hover:bg-purple-50">Download</a>
+                </div>
+            </nav>
+
+            <!-- Hero Content -->
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-5xl font-bold mb-6 leading-tight">
+                    Talk to AI That <span class="hardware-glow bg-clip-text text-transparent">Actually Listens</span>
+                </h1>
+                
+                <p class="text-xl mb-8 text-purple-100 leading-relaxed">
+                    Your personal AI assistant for Mac • Advanced conversations • Real problem solving • Better than Siri
+                </p>
+                
+                <!-- AI Demo -->
+                <div class="bg-black/30 rounded-2xl p-8 mb-12 text-left">
+                    <div class="text-green-400 mb-4"># Live AI Conversation Demo</div>
+                    <div class="space-y-3 text-sm font-mono">
+                        <div><span class="text-blue-400">You:</span> "Hey MacAgent, translate this email to Spanish"</div>
+                        <div><span class="text-purple-400">AI Agent:</span> Translating now... Here's your email in Spanish:</div>
+                        <div class="text-green-300 bg-black/20 p-3 rounded">¡Hola! Espero que estés bien. Quería preguntarte...</div>
+                        <div><span class="text-blue-400">You:</span> "Also, why is my Mac running slow today?"</div>
+                        <div><span class="text-purple-400">AI Agent:</span> I see Chrome is using 89% CPU. I'll optimize that for you.</div>
+                        <div class="text-yellow-300">✅ Fixed: Chrome optimized, 45% faster performance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Agent Capabilities -->
+    <div class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Your AI Agent Can Do Everything</h2>
+                <p class="text-xl text-gray-600">Advanced Siri alternative that actually gets things done</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Translation -->
+                <div class="bg-blue-50 rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">🌍</div>
+                    <h3 class="text-xl font-bold mb-4">Instant Translation</h3>
+                    <p class="text-gray-600 mb-4">"Translate this document to French" - Done in seconds, not Safari tabs</p>
+                    <div class="bg-blue-100 p-3 rounded text-sm text-blue-800">
+                        47 languages supported
+                    </div>
+                </div>
+
+                <!-- Problem Solving -->
+                <div class="bg-green-50 rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-4">Smart Problem Solving</h3>
+                    <p class="text-gray-600 mb-4">"Help me fix this error message" - AI reads, understands, and solves</p>
+                    <div class="bg-green-100 p-3 rounded text-sm text-green-800">
+                        Context-aware solutions
+                    </div>
+                </div>
+
+                <!-- Task Automation -->
+                <div class="bg-purple-50 rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-4">Task Automation</h3>
+                    <p class="text-gray-600 mb-4">"Organize my desktop" - AI handles files, folders, and cleanup</p>
+                    <div class="bg-purple-100 p-3 rounded text-sm text-purple-800">
+                        Autonomous execution
+                    </div>
+                </div>
+
+                <!-- Research Assistant -->
+                <div class="bg-orange-50 rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">📚</div>
+                    <h3 class="text-xl font-bold mb-4">Research Assistant</h3>
+                    <p class="text-gray-600 mb-4">"Find information about X" - Comprehensive research and summaries</p>
+                    <div class="bg-orange-100 p-3 rounded text-sm text-orange-800">
+                        Deep analysis mode
+                    </div>
+                </div>
+
+                <!-- Code Helper -->
+                <div class="bg-indigo-50 rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-xl font-bold mb-4">Code Assistant</h3>
+                    <p class="text-gray-600 mb-4">"Debug this code" - AI reviews, finds issues, suggests fixes</p>
+                    <div class="bg-indigo-100 p-3 rounded text-sm text-indigo-800">
+                        Multi-language support
+                    </div>
+                </div>
+
+                <!-- Virtual Assistant -->
+                <div class="bg-cyan-50 rounded-2xl p-8 text-center">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-4">Virtual Assistant</h3>
+                    <p class="text-gray-600 mb-4">"Schedule my week" - AI manages calendar, priorities, reminders</p>
+                    <div class="bg-cyan-100 p-3 rounded text-sm text-cyan-800">
+                        Proactive planning
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conversation Examples -->
+    <div class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Real Conversations, Real Results</h2>
+                <p class="text-xl text-gray-600">See how MacAgent Pro AI agents handle actual user requests</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Conversation 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">U</div>
+                            <div class="bg-blue-50 p-3 rounded-lg flex-1">
+                                "I need to present this data in a clear way for my boss. Can you help me organize it?"
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">AI</div>
+                            <div class="bg-gray-100 p-3 rounded-lg flex-1">
+                                "I'll analyze your data and create a executive summary. I can see you have sales figures, customer feedback, and performance metrics. Let me organize this into a clear presentation structure with key insights highlighted."
+                            </div>
+                        </div>
+                        <div class="text-center text-green-600 font-semibold">✅ Result: Professional presentation created in 3 minutes</div>
+                    </div>
+                </div>
+
+                <!-- Conversation 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">U</div>
+                            <div class="bg-blue-50 p-3 rounded-lg flex-1">
+                                "My Mac keeps freezing when I use Photoshop. What's wrong?"
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">AI</div>
+                            <div class="bg-gray-100 p-3 rounded-lg flex-1">
+                                "I see your RAM usage is at 94% and Photoshop is using 6.2GB. Your Mac is running out of memory. I'll optimize your system memory, close unnecessary background apps, and adjust Photoshop's memory settings."
+                            </div>
+                        </div>
+                        <div class="text-center text-green-600 font-semibold">✅ Result: Photoshop runs smoothly, no more freezing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-20 bg-purple-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-4">Ready for AI That Actually Works?</h2>
+            <p class="text-xl text-purple-200 mb-8">Join the beta and experience the AI assistant Mac users deserve</p>
+            <a href="index.html#download" class="bg-white text-purple-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-50 transition-colors">
+                Join Beta Waitlist
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="py-12 bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-6 h-6 hardware-glow rounded"></div>
+                <span class="text-white font-bold">MacAgent Pro - AI Agents</span>
+            </div>
+            <p class="text-sm">Talk to AI • Solve Problems • Get Things Done</p>
+        </div>
+    </div>
+</body>
+</html>

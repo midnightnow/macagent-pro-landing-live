@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mac Optimization - Clean, Fast, Perfect Mac | MacAgent Pro</title>
+    <meta name="description" content="Clean Mac optimization with AI. Make your Mac faster, cleaner, and more efficient with intelligent performance tuning.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mac-blue': '#007AFF',
+                        'mac-gray': '#8E8E93', 
+                        'mac-green': '#30D158',
+                        'mac-red': '#FF3B30',
+                        'mac-orange': '#FF9500'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in-out'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .hardware-glow {
+            background: linear-gradient(45deg, #007AFF, #30D158, #FF9500);
+            background-size: 300% 300%;
+            animation: hardwareGlow 3s ease infinite;
+        }
+        
+        @keyframes hardwareGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .feature-card { transition: all 0.3s; border-left: 4px solid #4f46e5; }
+        .feature-card:hover { transform: translateX(4px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .metric-card { background: linear-gradient(135deg, #1e293b, #334155); }
+        .tech-highlight { background: linear-gradient(90deg, #f59e0b, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .terminal-glow { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Hero Section -->
+    <div class="min-h-screen bg-gradient-to-b from-green-900 via-green-800 to-green-700 text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 pt-16">
+            <!-- Navigation -->
+            <nav class="flex justify-between items-center mb-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 hardware-glow rounded-lg"></div>
+                    <span class="text-xl font-bold">MacAgent Pro</span>
+                    <span class="text-sm bg-green-500 px-2 py-1 rounded text-white">Mac</span>
+                </div>
+                <div class="space-x-6">
+                    <a href="index.html" class="hover:text-green-200">Home</a>
+                    <a href="ai-agents.html" class="hover:text-green-200">AI Agents</a>
+                    <a href="mac-optimization.html" class="text-green-200 font-semibold">Mac</a>
+                    <a href="genius-assistant.html" class="hover:text-green-200">Genius</a>
+                    <a href="pricing.html" class="hover:text-green-200">Pricing</a>
+                    <a href="index.html#download" class="bg-white text-green-900 px-6 py-2 rounded-lg font-medium hover:bg-green-50">Download</a>
+                </div>
+            </nav>
+
+            <!-- Hero Content -->
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-5xl font-bold mb-6 leading-tight">
+                    Your Mac, <span class="hardware-glow bg-clip-text text-transparent">Clean & Perfect</span>
+                </h1>
+                
+                <p class="text-xl mb-8 text-green-100 leading-relaxed">
+                    AI-powered Mac optimization • Zero maintenance required • Always fast and clean
+                </p>
+                
+                <!-- Live Performance Dashboard -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                    <div class="metric-card rounded-lg p-6 text-center terminal-glow">
+                        <div class="text-3xl font-bold text-green-400" id="speed-boost">+47%</div>
+                        <div class="text-sm text-green-200">Speed Boost</div>
+                    </div>
+                    <div class="metric-card rounded-lg p-6 text-center terminal-glow">
+                        <div class="text-3xl font-bold text-blue-400" id="storage-freed">12.3GB</div>
+                        <div class="text-sm text-green-200">Storage Freed</div>
+                    </div>
+                    <div class="metric-card rounded-lg p-6 text-center terminal-glow">
+                        <div class="text-3xl font-bold text-purple-400" id="memory-optimized">94%</div>
+                        <div class="text-sm text-green-200">Memory Optimized</div>
+                    </div>
+                    <div class="metric-card rounded-lg p-6 text-center terminal-glow">
+                        <div class="text-3xl font-bold text-amber-400" id="temperature">42°C</div>
+                        <div class="text-sm text-green-200">CPU Temperature</div>
+                    </div>
+                </div>
+
+                <!-- Optimization Preview -->
+                <div class="bg-black/30 rounded-2xl p-8 mb-12 text-left">
+                    <div class="text-green-400 mb-4"># MacAgent Pro Optimization in Progress...</div>
+                    <div class="space-y-2 text-sm font-mono">
+                        <div class="text-yellow-300">✨ Cleaning system caches... 2.4GB removed</div>
+                        <div class="text-yellow-300">✨ Optimizing memory allocation... +23% available</div>
+                        <div class="text-yellow-300">✨ Managing background processes... 12 apps optimized</div>
+                        <div class="text-green-300">✅ CPU performance: +47% improvement</div>
+                        <div class="text-green-300">✅ Storage optimization: 12.3GB freed</div>
+                        <div class="text-green-300">✅ Mac running like new ⚡</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Before & After -->
+    <div class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Your Mac: Before vs After MacAgent Pro</h2>
+                <p class="text-xl text-gray-600">See the dramatic transformation AI optimization delivers</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Before -->
+                <div class="text-center">
+                    <div class="text-4xl mb-6">😩</div>
+                    <h3 class="text-2xl font-bold mb-6 text-red-600">Before: Frustrated Mac User</h3>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                            <div class="font-semibold text-red-700 mb-2">Slow Performance</div>
+                            <div class="text-sm text-gray-600">Beach ball every few minutes</div>
+                            <div class="text-xs text-red-500">Apps take forever to launch</div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                            <div class="font-semibold text-red-700 mb-2">Storage Always Full</div>
+                            <div class="text-sm text-gray-600">"Your disk is almost full" alerts</div>
+                            <div class="text-xs text-red-500">Can't install updates</div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                            <div class="font-semibold text-red-700 mb-2">Hot & Loud</div>
+                            <div class="text-sm text-gray-600">Fan constantly running</div>
+                            <div class="text-xs text-red-500">Laptop too hot to use</div>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                            <div class="font-semibold text-red-700 mb-2">Battery Dies Fast</div>
+                            <div class="text-sm text-gray-600">2 hours max battery life</div>
+                            <div class="text-xs text-red-500">Always plugged in</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- After -->
+                <div class="text-center">
+                    <div class="text-4xl mb-6">😊</div>
+                    <h3 class="text-2xl font-bold mb-6 text-green-600">After: MacAgent Pro User</h3>
+                    <div class="space-y-4">
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <div class="font-semibold text-green-700 mb-2">Lightning Fast</div>
+                            <div class="text-sm text-gray-600">Instant app launches</div>
+                            <div class="text-xs text-green-600">+47% performance boost average</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <div class="font-semibold text-green-700 mb-2">Plenty of Space</div>
+                            <div class="text-sm text-gray-600">AI frees up 10-15GB automatically</div>
+                            <div class="text-xs text-green-600">Smart cleanup removes only junk</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <div class="font-semibold text-green-700 mb-2">Cool & Quiet</div>
+                            <div class="text-sm text-gray-600">Optimal temperature management</div>
+                            <div class="text-xs text-green-600">Silent operation, no overheating</div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <div class="font-semibold text-green-700 mb-2">All-Day Battery</div>
+                            <div class="text-sm text-gray-600">Intelligent power optimization</div>
+                            <div class="text-xs text-green-600">+60% longer battery life</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mac Optimization Features -->
+    <div class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">AI-Powered Mac Optimization</h2>
+                <p class="text-xl text-gray-600">Smart cleanup and optimization that never breaks anything</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Smart Storage Cleanup -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">🧹</div>
+                    <h3 class="text-xl font-bold mb-4">Smart Storage Cleanup</h3>
+                    <p class="text-gray-600 mb-4">AI identifies safe-to-delete files and frees up space intelligently</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <div class="font-semibold">Average cleanup: 12.3GB</div>
+                        <div class="text-xs text-gray-600 mt-1">Cache files, old downloads, duplicate photos</div>
+                    </div>
+                </div>
+
+                <!-- Memory Optimization -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold mb-4">Memory Optimization</h3>
+                    <p class="text-gray-600 mb-4">Intelligent RAM management and memory pressure relief</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <div class="font-semibold">Memory freed: 2.4GB avg</div>
+                        <div class="text-xs text-gray-600 mt-1">Without closing your important apps</div>
+                    </div>
+                </div>
+
+                <!-- Performance Tuning -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-4">Performance Tuning</h3>
+                    <p class="text-gray-600 mb-4">CPU optimization and process prioritization for speed</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <div class="font-semibold">Speed boost: +47%</div>
+                        <div class="text-xs text-gray-600 mt-1">Apps launch faster, smoother operation</div>
+                    </div>
+                </div>
+
+                <!-- Thermal Management -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">🌡️</div>
+                    <h3 class="text-xl font-bold mb-4">Thermal Management</h3>
+                    <p class="text-gray-600 mb-4">Prevents overheating with intelligent temperature control</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <div class="font-semibold">Temperature: -20°C avg</div>
+                        <div class="text-xs text-gray-600 mt-1">Cooler Mac, longer component life</div>
+                    </div>
+                </div>
+
+                <!-- Battery Optimization -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">🔋</div>
+                    <h3 class="text-xl font-bold mb-4">Battery Optimization</h3>
+                    <p class="text-gray-600 mb-4">Extend battery life with smart power management</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <div class="font-semibold">Battery life: +60%</div>
+                        <div class="text-xs text-gray-600 mt-1">Longer usage, better health</div>
+                    </div>
+                </div>
+
+                <!-- Auto-Maintenance -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">🔄</div>
+                    <h3 class="text-xl font-bold mb-4">Auto-Maintenance</h3>
+                    <p class="text-gray-600 mb-4">Set-it-and-forget-it maintenance that keeps Mac perfect</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        <div class="font-semibold">Maintenance: Daily</div>
+                        <div class="text-xs text-gray-600 mt-1">Always optimized, zero effort</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zero Maintenance Promise -->
+    <div class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8">The Zero-Maintenance Promise</h2>
+                <p class="text-xl text-gray-600 mb-12">Your Mac stays perfect automatically. No thinking, no managing, no maintenance.</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-blue-50 rounded-xl p-6">
+                        <div class="text-3xl mb-4">🎯</div>
+                        <h3 class="text-lg font-bold mb-2">Set Once, Forget Forever</h3>
+                        <p class="text-sm text-gray-600">MacAgent Pro handles everything in the background</p>
+                    </div>
+                    <div class="bg-green-50 rounded-xl p-6">
+                        <div class="text-3xl mb-4">🧠</div>
+                        <h3 class="text-lg font-bold mb-2">AI Makes All Decisions</h3>
+                        <p class="text-sm text-gray-600">Smart enough to optimize without breaking anything</p>
+                    </div>
+                    <div class="bg-purple-50 rounded-xl p-6">
+                        <div class="text-3xl mb-4">⚡</div>
+                        <h3 class="text-lg font-bold mb-2">Always Getting Better</h3>
+                        <p class="text-sm text-gray-600">Learns your usage patterns for perfect optimization</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-20 bg-green-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-4">Ready for a Perfect Mac?</h2>
+            <p class="text-xl text-green-200 mb-8">Join thousands of users who never worry about Mac performance again</p>
+            <a href="index.html#download" class="bg-white text-green-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-50 transition-colors">
+                Optimize My Mac Now
+            </a>
+            <div class="mt-6 text-green-200 text-sm">
+                ⚡ Instant optimization • 🛡️ 100% safe cleanup • 🔄 Zero maintenance required
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="py-12 bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-6 h-6 hardware-glow rounded"></div>
+                <span class="text-white font-bold">MacAgent Pro - Mac Optimization</span>
+            </div>
+            <p class="text-sm">Clean Mac • Fast Performance • Zero Maintenance</p>
+        </div>
+    </div>
+
+    <script>
+        // Animate metrics
+        function updateMetrics() {
+            // Update performance metrics with realistic variations
+            document.getElementById('speed-boost').textContent = '+' + (45 + Math.random() * 8).toFixed(0) + '%';
+            document.getElementById('storage-freed').textContent = (10 + Math.random() * 5).toFixed(1) + 'GB';
+            document.getElementById('memory-optimized').textContent = (90 + Math.random() * 8).toFixed(0) + '%';
+            document.getElementById('temperature').textContent = (40 + Math.random() * 8).toFixed(0) + '°C';
+        }
+        
+        // Update metrics every 3 seconds
+        setInterval(updateMetrics, 3000);
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateMetrics();
+        });
+    </script>
+</body>
+</html>

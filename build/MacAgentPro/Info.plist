@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>MacAgent Pro</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.macagent.pro</string>
+    <key>CFBundleName</key>
+    <string>MacAgent Pro</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.2</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.2</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>MacAgent Pro needs microphone access to listen for voice commands like 'Hey MacAgent'.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>MacAgent Pro uses speech recognition to process voice commands and provide AI assistance.</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>10.15.0</string>
+    <key>LSUIElement</key>
+    <true/>
+</dict>
+</plist>

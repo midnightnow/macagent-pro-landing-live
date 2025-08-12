@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genius Assistant - Mac Repair & Support | MacAgent Pro</title>
+    <meta name="description" content="Mac-specific genius assistant for repair, troubleshooting, and support. Better than Apple Genius Bar - instant Mac help 24/7.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mac-blue': '#007AFF',
+                        'mac-gray': '#8E8E93', 
+                        'mac-green': '#30D158',
+                        'mac-red': '#FF3B30',
+                        'mac-orange': '#FF9500'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'fade-in': 'fadeIn 0.5s ease-in-out'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .hardware-glow {
+            background: linear-gradient(45deg, #007AFF, #30D158, #FF9500);
+            background-size: 300% 300%;
+            animation: hardwareGlow 3s ease infinite;
+        }
+        
+        @keyframes hardwareGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .feature-card { transition: all 0.3s; border-left: 4px solid #4f46e5; }
+        .feature-card:hover { transform: translateX(4px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .metric-card { background: linear-gradient(135deg, #1e293b, #334155); }
+        .tech-highlight { background: linear-gradient(90deg, #f59e0b, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .terminal-glow { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Hero Section -->
+    <div class="min-h-screen bg-gradient-to-b from-red-900 via-red-800 to-red-700 text-white relative overflow-hidden">
+        <div class="container mx-auto px-6 pt-16">
+            <!-- Navigation -->
+            <nav class="flex justify-between items-center mb-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 hardware-glow rounded-lg"></div>
+                    <span class="text-xl font-bold">MacAgent Pro</span>
+                    <span class="text-sm bg-red-500 px-2 py-1 rounded text-white">Genius</span>
+                </div>
+                <div class="space-x-6">
+                    <a href="index.html" class="hover:text-red-200">Home</a>
+                    <a href="ai-agents.html" class="hover:text-red-200">AI Agents</a>
+                    <a href="mac-optimization.html" class="hover:text-red-200">Mac</a>
+                    <a href="genius-assistant.html" class="text-red-200 font-semibold">Genius</a>
+                    <a href="pricing.html" class="hover:text-red-200">Pricing</a>
+                    <a href="index.html#download" class="bg-white text-red-900 px-6 py-2 rounded-lg font-medium hover:bg-red-50">Download</a>
+                </div>
+            </nav>
+
+            <!-- Hero Content -->
+            <div class="text-center max-w-4xl mx-auto">
+                <h1 class="text-5xl font-bold mb-6 leading-tight">
+                    Your Personal <span class="hardware-glow bg-clip-text text-transparent">Mac Genius</span> 24/7
+                </h1>
+                
+                <p class="text-xl mb-8 text-red-100 leading-relaxed">
+                    Mac repair expertise • Instant troubleshooting • Better than Apple Genius Bar • Available always
+                </p>
+                
+                <!-- Live Mac Diagnosis Demo -->
+                <div class="bg-black/30 rounded-2xl p-8 mb-12 text-left">
+                    <div class="text-green-400 mb-4"># Live Mac Diagnosis in Progress...</div>
+                    <div class="space-y-2 text-sm font-mono">
+                        <div><span class="text-blue-400">Genius AI:</span> Analyzing your Mac's health...</div>
+                        <div class="text-yellow-300">🔍 Checking hardware sensors...</div>
+                        <div class="text-yellow-300">🔍 Scanning system logs...</div>
+                        <div class="text-yellow-300">🔍 Testing memory performance...</div>
+                        <div class="text-red-300">⚠️  Found issue: SSD showing early wear signs</div>
+                        <div class="text-green-300">✅ Solution: Backup recommended, 3 months before replacement needed</div>
+                        <div><span class="text-blue-400">Genius AI:</span> I'll set up automatic backups and monitor your SSD health.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apple Genius Bar vs MacAgent Genius -->
+    <div class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Apple Genius Bar vs MacAgent Genius</h2>
+                <p class="text-xl text-gray-600">Why wait in line when you can get better help instantly?</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Apple Genius Bar -->
+                <div class="text-center">
+                    <div class="text-4xl mb-6">🏪</div>
+                    <h3 class="text-2xl font-bold mb-6 text-gray-700">Apple Genius Bar</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <div class="font-semibold text-red-600 mb-2">❌ Make appointment weeks ahead</div>
+                            <p class="text-sm text-gray-600">Wait 2-3 weeks for availability</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <div class="font-semibold text-red-600 mb-2">❌ Travel to Apple Store</div>
+                            <p class="text-sm text-gray-600">Drive, park, wait in line</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <div class="font-semibold text-red-600 mb-2">❌ Generic troubleshooting</div>
+                            <p class="text-sm text-gray-600">"Have you tried restarting it?"</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <div class="font-semibold text-red-600 mb-2">❌ Limited to store hours</div>
+                            <p class="text-sm text-gray-600">9 AM - 9 PM, if you're lucky</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MacAgent Genius -->
+                <div class="text-center">
+                    <div class="text-4xl mb-6">🤖</div>
+                    <h3 class="text-2xl font-bold mb-6 text-blue-600">MacAgent Genius</h3>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <div class="font-semibold text-blue-600 mb-2">✅ Instant availability</div>
+                            <p class="text-sm text-gray-600">24/7, whenever you need help</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <div class="font-semibold text-blue-600 mb-2">✅ Help from your Mac</div>
+                            <p class="text-sm text-gray-600">No travel, no waiting, no hassle</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <div class="font-semibold text-blue-600 mb-2">✅ Deep Mac analysis</div>
+                            <p class="text-sm text-gray-600">Hardware sensors, system logs, real data</p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <div class="font-semibold text-blue-600 mb-2">✅ Always available</div>
+                            <p class="text-sm text-gray-600">3 AM emergency? No problem.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mac-Specific Genius Features -->
+    <div class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Mac Genius Specialties</h2>
+                <p class="text-xl text-gray-600">Deep Mac knowledge that goes beyond generic IT support</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Hardware Diagnosis -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">🔬</div>
+                    <h3 class="text-xl font-bold mb-4">Hardware Diagnosis</h3>
+                    <p class="text-gray-600 mb-4">Real-time sensor monitoring, thermal analysis, and component health checks</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm font-mono">
+                        CPU: 67°C (Warning)<br>
+                        SSD: 94% health<br>
+                        Battery: 347 cycles
+                    </div>
+                </div>
+
+                <!-- macOS Expertise -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">🍎</div>
+                    <h3 class="text-xl font-bold mb-4">macOS Deep Knowledge</h3>
+                    <p class="text-gray-600 mb-4">System extensions, permissions, launch agents, and hidden macOS features</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        Sequoia, Sonoma, Ventura, Monterey, Big Sur expertise
+                    </div>
+                </div>
+
+                <!-- App Conflicts -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">⚔️</div>
+                    <h3 class="text-xl font-bold mb-4">App Conflict Resolution</h3>
+                    <p class="text-gray-600 mb-4">Identify which apps are fighting, causing crashes, or slowing performance</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        Chrome vs Safari extensions detected
+                    </div>
+                </div>
+
+                <!-- Performance Tuning -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-4">Performance Optimization</h3>
+                    <p class="text-gray-600 mb-4">Mac-specific tweaks for memory, storage, and CPU optimization</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        +47% speed improvement typical
+                    </div>
+                </div>
+
+                <!-- Data Recovery -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">💾</div>
+                    <h3 class="text-xl font-bold mb-4">Data Recovery</h3>
+                    <p class="text-gray-600 mb-4">Emergency file recovery, Time Machine issues, and backup strategies</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        99.7% file recovery success rate
+                    </div>
+                </div>
+
+                <!-- Security Analysis -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm">
+                    <div class="text-4xl mb-4">🛡️</div>
+                    <h3 class="text-xl font-bold mb-4">Security Analysis</h3>
+                    <p class="text-gray-600 mb-4">Malware detection, suspicious activity monitoring, and privacy audits</p>
+                    <div class="bg-gray-100 p-3 rounded text-sm">
+                        Advanced threat detection
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Repair Scenarios -->
+    <div class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Common Mac Problems, Instant Solutions</h2>
+                <p class="text-xl text-gray-600">Real repair scenarios MacAgent Genius handles daily</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto space-y-8">
+                <!-- Scenario 1 -->
+                <div class="bg-red-50 rounded-xl p-6 border-l-4 border-red-500">
+                    <h3 class="text-xl font-bold text-red-700 mb-3">🔥 "My Mac is overheating and shutting down"</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-2">Genius Analysis:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• CPU temperature: 94°C (critical)</li>
+                                <li>• Chrome Helper using 89% CPU</li>
+                                <li>• Dust buildup in fans detected</li>
+                                <li>• Thermal throttling engaged</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-2">Immediate Solution:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Close 14 Chrome tabs automatically</li>
+                                <li>• Enable CPU thermal protection</li>
+                                <li>• Schedule fan cleaning reminder</li>
+                                <li>• Monitor temperature continuously</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-green-700 font-semibold">✅ Result: Temperature dropped to 52°C, no more shutdowns</div>
+                </div>
+
+                <!-- Scenario 2 -->
+                <div class="bg-orange-50 rounded-xl p-6 border-l-4 border-orange-500">
+                    <h3 class="text-xl font-bold text-orange-700 mb-3">🐌 "Mac is extremely slow after macOS update"</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-2">Genius Analysis:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Background app indexing at 100%</li>
+                                <li>• Old 32-bit apps causing conflicts</li>
+                                <li>• System preferences corrupted</li>
+                                <li>• 87% memory pressure</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-2">Immediate Solution:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Pause Spotlight indexing temporarily</li>
+                                <li>• Remove incompatible 32-bit apps</li>
+                                <li>• Rebuild system preferences</li>
+                                <li>• Optimize memory allocation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-green-700 font-semibold">✅ Result: Mac performance restored to pre-update speed</div>
+                </div>
+
+                <!-- Scenario 3 -->
+                <div class="bg-purple-50 rounded-xl p-6 border-l-4 border-purple-500">
+                    <h3 class="text-xl font-bold text-purple-700 mb-3">💾 "Important files disappeared after system crash"</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-2">Genius Analysis:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Kernel panic at 3:42 AM detected</li>
+                                <li>• File system corruption in Documents</li>
+                                <li>• Time Machine backup 2 days old</li>
+                                <li>• 847 files in system recovery area</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-700 mb-2">Immediate Solution:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Run emergency file system repair</li>
+                                <li>• Recover files from hidden .Trash-recovery</li>
+                                <li>• Restore recent files from Time Machine</li>
+                                <li>• Set up automatic hourly backups</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-green-700 font-semibold">✅ Result: 98% of files recovered, automatic backup enabled</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 24/7 Support -->
+    <div class="py-20 bg-red-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-4">Mac Emergency? We're Here.</h2>
+            <p class="text-xl text-red-200 mb-8">3 AM system crash? Weekend deadline? Holiday emergency? MacAgent Genius never sleeps.</p>
+            <a href="index.html#download" class="bg-white text-red-900 px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-50 transition-colors">
+                Get Your Mac Genius Now
+            </a>
+            <div class="mt-6 text-red-200 text-sm">
+                ⚡ Average response time: 12 seconds • 🛡️ 99.7% problem resolution rate
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="py-12 bg-gray-900 text-gray-400">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-6 h-6 hardware-glow rounded"></div>
+                <span class="text-white font-bold">MacAgent Pro - Genius Assistant</span>
+            </div>
+            <p class="text-sm">Mac Repair • 24/7 Support • Instant Solutions</p>
+        </div>
+    </div>
+</body>
+</html>

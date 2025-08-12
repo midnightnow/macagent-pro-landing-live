@@ -1,0 +1,21 @@
+#!/bin/bash
+echo "🎤 MacAgent Pro Voice Input Demo"
+echo "================================"
+echo "Voice commands you can try:"
+echo "• 'Hey MacAgent, check my temperature'"
+echo "• 'MacAgent, optimize my Mac'"
+echo "• 'Hey Mac, how much memory am I using?'"
+echo ""
+echo "Note: This demo simulates voice input functionality"
+echo "The actual voice recognition requires proper Swift compilation"
+read -p "Say a command: " command
+echo "Processing: '$command'"
+if [[ "$command" =~ [Tt]emperature ]]; then
+    echo "🌡️ CPU Temperature: 65.4°C - That's a bit warm but okay"
+elif [[ "$command" =~ [Oo]ptimize ]]; then
+    echo "🚀 Running Mac optimization... Complete! Performance improved."
+elif [[ "$command" =~ [Mm]emory ]]; then
+    echo "🧠 Memory Usage: 12.3GB / 16GB (77% used)"
+else
+    echo "🤖 I heard '$command' - Processing with MacAgent AI..."
+fi

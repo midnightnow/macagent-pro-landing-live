@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacAgent Pro A/B Testing Framework</title>
+    
+    <!-- A/B Testing Configuration -->
+    <script>
+        // A/B Testing Framework for MacAgent Pro
+        window.MacAgentAB = {
+            // Test configurations
+            tests: {
+                headline: {
+                    enabled: true,
+                    variants: [
+                        "Hardware-Conscious AI for Mac",
+                        "50 AI Agents Working for Your Mac", 
+                        "Your Mac's Personal AI Team",
+                        "AI That Actually Understands Hardware"
+                    ],
+                    metric: 'email_capture'
+                },
+                pricing: {
+                    enabled: true,
+                    variants: [
+                        { annual: 30, monthly: 4.99 },
+                        { annual: 79, monthly: 9.99 },
+                        { annual: 49, monthly: 6.99 },
+                        { annual: 99, monthly: 12.99 }
+                    ],
+                    metric: 'premium_conversion'
+                },
+                urgency_timer: {
+                    enabled: true,
+                    variants: [
+                        { hours: 24, message: "Limited Time Beta Access" },
+                        { hours: 72, message: "Early Bird Pricing Ends Soon" },
+                        { hours: 168, message: "Join the AI Revolution" },
+                        null // No timer
+                    ],
+                    metric: 'email_capture'
+                },
+                cta_button: {
+                    enabled: true,
+                    variants: [
+                        "Get MacAgent Pro",
+                        "Start My AI Team", 
+                        "Activate 50 Agents",
+                        "Join the Beta"
+                    ],
+                    metric: 'click_through'
+                }
+            },
+            
+            // User assignment and tracking
+            user: {
+                id: null,
+                segment: null,
+                assignments: {},
+                events: []
+            },
+            
+            // Initialize A/B testing
+            init: function() {
+                this.user.id = this.getUserId();
+                this.user.segment = this.determineSegment();
+                this.assignVariants();
+                this.trackPageView();
+                console.log('MacAgent A/B Testing initialized:', this.user);
+            },
+            
+            // Get or create user ID
+            getUserId: function() {
+                let userId = localStorage.getItem('macagent_user_id');
+                if (!userId) {
+                    userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                    localStorage.setItem('macagent_user_id', userId);
+                }
+                return userId;
+            },
+            
+            // Determine user segment based on Mac model
+            determineSegment: function() {
+                const userAgent = navigator.userAgent;
+                if (userAgent.includes('Intel')) return 'intel_mac';
+                if (userAgent.includes('Apple')) return 'apple_silicon';
+                return 'unknown_mac';
+            },
+            
+            // Assign user to test variants
+            assignVariants: function() {
+                for (const [testName, testConfig] of Object.entries(this.tests)) {
+                    if (testConfig.enabled) {
+                        const variantIndex = this.hashUserId(testName) % testConfig.variants.length;
+                        this.user.assignments[testName] = {
+                            variant: variantIndex,
+                            value: testConfig.variants[variantIndex]
+                        };
+                    }
+                }
+            },
+            
+            // Hash user ID for consistent variant assignment
+            hashUserId: function(testName) {
+                const str = this.user.id + testName;
+                let hash = 0;
+                for (let i = 0; i < str.length; i++) {
+                    const char = str.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash; // Convert to 32-bit integer
+                }
+                return Math.abs(hash);
+            },
+            
+            // Get variant for a specific test
+            getVariant: function(testName) {
+                const assignment = this.user.assignments[testName];
+                return assignment ? assignment.value : null;
+            },
+            
+            // Track events
+            track: function(event, properties = {}) {
+                const eventData = {
+                    timestamp: new Date().toISOString(),
+                    user_id: this.user.id,
+                    segment: this.user.segment,
+                    event: event,
+                    properties: properties,
+                    assignments: this.user.assignments
+                };
+                
+                this.user.events.push(eventData);
+                
+                // Store locally
+                this.saveToStorage();
+                
+                // Send to analytics (implement your preferred service)
+                this.sendToAnalytics(eventData);
+                
+                console.log('Event tracked:', eventData);
+            },
+            
+            // Track page view
+            trackPageView: function() {
+                this.track('page_view', {
+                    url: window.location.href,
+                    referrer: document.referrer
+                });
+            },
+            
+            // Track email capture
+            trackEmailCapture: function(email, source = 'unknown') {
+                this.track('email_capture', {
+                    email: email,
+                    source: source
+                });
+            },
+            
+            // Track premium conversion
+            trackPremiumConversion: function(plan, amount) {
+                this.track('premium_conversion', {
+                    plan: plan,
+                    amount: amount
+                });
+            },
+            
+            // Track CTA clicks
+            trackCTAClick: function(button, location) {
+                this.track('cta_click', {
+                    button: button,
+                    location: location
+                });
+            },
+            
+            // Save events to localStorage
+            saveToStorage: function() {
+                try {
+                    localStorage.setItem('macagent_ab_data', JSON.stringify({
+                        user: this.user,
+                        lastUpdated: Date.now()
+                    }));
+                } catch (e) {
+                    console.warn('Could not save A/B test data to localStorage:', e);
+                }
+            },
+            
+            // Send to analytics service
+            sendToAnalytics: function(eventData) {
+                // Google Analytics 4
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', eventData.event, {
+                        user_id: eventData.user_id,
+                        custom_parameters: {
+                            segment: eventData.segment,
+                            ...eventData.properties,
+                            ab_test_data: JSON.stringify(eventData.assignments)
+                        }
+                    });
+                }
+                
+                // Mixpanel
+                if (typeof mixpanel !== 'undefined') {
+                    mixpanel.track(eventData.event, {
+                        ...eventData.properties,
+                        user_segment: eventData.segment,
+                        ab_assignments: eventData.assignments
+                    });
+                }
+                
+                // Custom endpoint (replace with your analytics API)
+                fetch('/api/analytics/track', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(eventData)
+                }).catch(e => console.warn('Analytics API unavailable:', e));
+            },
+            
+            // Apply variants to page elements
+            applyVariants: function() {
+                // Apply headline variant
+                const headlineVariant = this.getVariant('headline');
+                if (headlineVariant) {
+                    const headlineEl = document.querySelector('.hero-headline, h1');
+                    if (headlineEl) {
+                        headlineEl.textContent = headlineVariant;
+                    }
+                }
+                
+                // Apply pricing variant
+                const pricingVariant = this.getVariant('pricing');
+                if (pricingVariant) {
+                    const annualEl = document.querySelector('.price-annual');
+                    const monthlyEl = document.querySelector('.price-monthly');
+                    if (annualEl) annualEl.textContent = `$${pricingVariant.annual}/year`;
+                    if (monthlyEl) monthlyEl.textContent = `$${pricingVariant.monthly}/month`;
+                }
+                
+                // Apply urgency timer variant
+                const timerVariant = this.getVariant('urgency_timer');
+                if (timerVariant) {
+                    const timerEl = document.querySelector('#urgency-timer');
+                    if (timerEl) {
+                        if (timerVariant === null) {
+                            timerEl.style.display = 'none';
+                        } else {
+                            timerEl.style.display = 'block';
+                            this.startCountdown(timerVariant.hours, timerVariant.message);
+                        }
+                    }
+                } else {
+                    const timerEl = document.querySelector('#urgency-timer');
+                    if (timerEl) timerEl.style.display = 'none';
+                }
+                
+                // Apply CTA button variant
+                const ctaVariant = this.getVariant('cta_button');
+                if (ctaVariant) {
+                    const ctaButtons = document.querySelectorAll('.cta-button, .primary-cta');
+                    ctaButtons.forEach(btn => {
+                        if (!btn.dataset.originalText) {
+                            btn.dataset.originalText = btn.textContent;
+                        }
+                        btn.textContent = ctaVariant;
+                    });
+                }
+            },
+            
+            // Start countdown timer
+            startCountdown: function(hours, message) {
+                const endTime = Date.now() + (hours * 60 * 60 * 1000);
+                
+                const updateTimer = () => {
+                    const remaining = endTime - Date.now();
+                    if (remaining <= 0) {
+                        document.querySelector('#urgency-timer').style.display = 'none';
+                        return;
+                    }
+                    
+                    const hours = Math.floor(remaining / (1000 * 60 * 60));
+                    const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+                    
+                    const timerEl = document.querySelector('#timer-display');
+                    const messageEl = document.querySelector('#timer-message');
+                    
+                    if (timerEl) {
+                        timerEl.textContent = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    }
+                    if (messageEl) {
+                        messageEl.textContent = message;
+                    }
+                };
+                
+                updateTimer();
+                setInterval(updateTimer, 1000);
+            },
+            
+            // Get test results for analysis
+            getResults: function() {
+                const data = localStorage.getItem('macagent_ab_data');
+                return data ? JSON.parse(data) : null;
+            }
+        };
+        
+        // Auto-initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            window.MacAgentAB.init();
+            
+            // Apply variants after a short delay to ensure page is rendered
+            setTimeout(() => {
+                window.MacAgentAB.applyVariants();
+            }, 100);
+        });
+        
+        // Track page unload
+        window.addEventListener('beforeunload', function() {
+            window.MacAgentAB.track('page_exit', {
+                time_on_page: Date.now() - performance.timing.navigationStart
+            });
+        });
+        
+    </script>
+    
+    <style>
+        /* A/B Testing Visual Indicators (for development only) */
+        .ab-test-indicator {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 10000;
+            max-width: 250px;
+        }
+        
+        .ab-test-indicator h4 {
+            margin: 0 0 5px 0;
+            color: #4CAF50;
+        }
+        
+        .ab-test-indicator .test-item {
+            margin-bottom: 3px;
+        }
+        
+        /* Hide in production */
+        body.production .ab-test-indicator {
+            display: none;
+        }
+        
+        /* Urgency timer styles */
+        #urgency-timer {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        #timer-display {
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            margin: 5px 0;
+        }
+        
+        #timer-message {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- A/B Test Visual Indicator (Development Only) -->
+    <div class="ab-test-indicator" id="ab-indicator" style="display: none;">
+        <h4>🧪 A/B Tests Active</h4>
+        <div id="test-assignments"></div>
+        <button onclick="console.log(window.MacAgentAB.getResults())" style="margin-top: 10px; padding: 5px;">Log Results</button>
+    </div>
+    
+    <!-- Urgency Timer Element -->
+    <div id="urgency-timer" style="display: none;">
+        <div id="timer-message">Limited Time Beta Access</div>
+        <div id="timer-display">24:00:00</div>
+    </div>
+    
+    <script>
+        // Show A/B test indicator in development
+        if (window.location.hostname === 'localhost' || window.location.hostname.includes('127.0.0.1')) {
+            document.getElementById('ab-indicator').style.display = 'block';
+            
+            // Update indicator with current assignments
+            setTimeout(() => {
+                const assignments = window.MacAgentAB.user.assignments;
+                const indicator = document.getElementById('test-assignments');
+                
+                let html = '';
+                for (const [test, assignment] of Object.entries(assignments)) {
+                    html += `<div class="test-item"><strong>${test}:</strong> Variant ${assignment.variant}</div>`;
+                }
+                indicator.innerHTML = html;
+            }, 200);
+        }
+        
+        // Example: Track email captures
+        function trackEmailCapture(email, source = 'popup') {
+            window.MacAgentAB.trackEmailCapture(email, source);
+        }
+        
+        // Example: Track CTA clicks
+        function trackCTAClick(button, location = 'hero') {
+            window.MacAgentAB.trackCTAClick(button, location);
+        }
+        
+        // Example: Track premium conversions
+        function trackPremiumConversion(plan, amount) {
+            window.MacAgentAB.trackPremiumConversion(plan, amount);
+        }
+    </script>
+    
+</body>
+</html>
